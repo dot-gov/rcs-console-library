@@ -196,6 +196,11 @@ package it.ht.rcs.console.push
           event = new PushEvent(PushEvent.AGENT);
           event.data = message;
           break;
+        case 'agent-config':
+          trace('PushManager: dispatching AGENT-CONFIG event');
+          event = new PushEvent(PushEvent.AGENT_CONFIG);
+          event.data = message;
+          break;
         case 'factory':
           trace('PushManager: dispatching FACTORY event');
           event = new PushEvent(PushEvent.FACTORY);

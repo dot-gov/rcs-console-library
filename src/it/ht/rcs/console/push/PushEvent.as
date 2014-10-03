@@ -19,6 +19,7 @@ package it.ht.rcs.console.push
     public static const USER:String = "user";
     public static const GROUP:String = "group";
     public static const MONITOR_COUNTERS:String = "monitor_counters";
+    public static const AGENT_CONFIG:String="agent_config";
     
     public static const CREATE:String = "create";
     public static const MODIFY:String = "modify";
