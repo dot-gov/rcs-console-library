@@ -755,6 +755,11 @@ package it.ht.rcs.console.evidence.rest
     {
      
     }
+    
+    public function filesystem_search(targetId:String, agentId:String, search:String, start:int=0, onResult:Function = null, onFault:Function = null):void
+    {
+      
+    }
 
   }
 

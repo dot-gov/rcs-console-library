@@ -296,6 +296,11 @@ package it.ht.rcs.console.evidence.controller
       DB.instance.evidence.filesystem(targetId, agentId, path, onResult);
     }
     
+    public function filesystem_search(targetId:String, agentId:String, search:String, start:int=0, onResult:Function = null, onFault:Function = null):void
+    {  
+      DB.instance.evidence.filesystem_search(targetId, agentId, search, start, onResult, onFault);
+    }
+    
     public function getFilters(onResult:Function = null, onFault:Function = null):void
     {
       DB.instance.evidence.filter_all(onResult, onFault)

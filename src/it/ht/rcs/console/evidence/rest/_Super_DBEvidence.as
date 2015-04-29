@@ -9,9 +9,9 @@ import com.adobe.fiber.services.wrapper.HTTPServiceWrapper;
 import com.adobe.fiber.valueobjects.IValueObject;
 import it.ht.rcs.console.evidence.model.AgentStatus;
 import it.ht.rcs.console.evidence.model.Evidence;
+import it.ht.rcs.console.evidence.model.FileSystemSearchResult;
 import it.ht.rcs.console.evidence.model.Filter;
 import it.ht.rcs.console.evidence.model.TypeCount;
-import it.ht.rcs.console.search.model.StatEvidence;
 import mx.collections.ListCollectionView;
 import mx.data.DataManager;
 import mx.data.IManaged;
@@ -301,11 +301,13 @@ internal class _Super_DBEvidence extends com.adobe.fiber.services.wrapper.HTTPSe
         operation.resultType = Object;
          operations.push(operation);
 
-         operation = new mx.rpc.http.Operation(null, "test");
-         operation.url = "/evidence/filesystem";
+         operation = new mx.rpc.http.Operation(null, "filesystem_search_");
+         operation.url = "/evidence/filesystem_search";
          operation.method = "GET";
+         argsArray = new Array("target","agent","search","start");
+         operation.argumentNames = argsArray;         
          operation.serializationFilter = serializer0;
-        operation.resultType = it.ht.rcs.console.search.model.StatEvidence;
+        operation.resultType = it.ht.rcs.console.evidence.model.FileSystemSearchResult;
          operations.push(operation);
 
          _serviceControl.operationList = operations;  
@@ -691,7 +693,7 @@ internal class _Super_DBEvidence extends com.adobe.fiber.services.wrapper.HTTPSe
     }
      
     /**
-      * This method is a generated wrapper used to call the 'test' operation. It returns an mx.rpc.AsyncToken whose
+      * This method is a generated wrapper used to call the 'filesystem_search_' operation. It returns an mx.rpc.AsyncToken whose
       * result property will be populated with the result of the operation when the server response is received.
       * To use this result from MXML code, define a CallResponder component and assign its token property to this method's return value.
       * You can then bind to CallResponder.lastResult or listen for the CallResponder.result or fault events.
@@ -701,10 +703,10 @@ internal class _Super_DBEvidence extends com.adobe.fiber.services.wrapper.HTTPSe
       *
       * @return an mx.rpc.AsyncToken whose result property will be populated with the result of the operation when the server response is received.
       */
-    public function test() : mx.rpc.AsyncToken
+    public function filesystem_search_(target:String, agent:String, search:String, start:int) : mx.rpc.AsyncToken
     {
-        var _internal_operation:mx.rpc.AbstractOperation = _serviceControl.getOperation("test");
-        var _internal_token:mx.rpc.AsyncToken = _internal_operation.send() ;
+        var _internal_operation:mx.rpc.AbstractOperation = _serviceControl.getOperation("filesystem_search_");
+        var _internal_token:mx.rpc.AsyncToken = _internal_operation.send(target,agent,search,start) ;
         return _internal_token;
     }
      

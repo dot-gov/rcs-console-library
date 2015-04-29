@@ -17,6 +17,7 @@ package it.ht.rcs.console.evidence.rest
     function total(params: Object, onResult:Function = null, onFault:Function = null):void;
     //function filesystem(targetId:String, agentId:String, filter:String, onResult:Function = null, onFault:Function = null):void;
     function filesystem(targetId:String, agentId:String, path:String, onResult:Function = null, onFault:Function = null):void;
+    function filesystem_search(targetId:String, agentId:String, search:String, start:int=0, onResult:Function = null, onFault:Function = null):void;
     function show(id:String, target:String, onResult:Function = null, onFault:Function = null):void;
     function destroy(evidence:Evidence, target:String, onResult:Function=null, onFault:Function=null):void;
     function destroy_all(params: Object, onResult:Function=null, onFault:Function=null):void;

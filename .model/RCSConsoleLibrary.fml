@@ -3442,28 +3442,6 @@
     <property name="_id" type="string" required="true"/>
     <property name="command" type="string" required="true"/>
   </entity>
-  <entity name="FileSystemItem">
-    <annotation name="EntityProperties">
-      <item name="EntityOriginalName">FileSystemItem</item>
-    </annotation>
-    <annotation name="service Group">
-      <item name="service">DBAgent</item>
-    </annotation>
-    <annotation name="ServerProperties">
-      <item name="IncludeRemoteClass">nonempty</item>
-    </annotation>
-    <annotation name="filesystems_">
-      <item name="propertySpecifier">_id,path,created_at,sent_at,depth</item>
-    </annotation>
-    <annotation name="ActionScriptGeneration">
-      <item name="Package">it.ht.rcs.console.agent.model</item>
-    </annotation>
-    <property name="_id" type="string" required="true"/>
-    <property name="path" type="string" required="true"/>
-    <property name="created_at" type="integer" required="true"/>
-    <property name="sent_at" type="integer" required="true"/>
-    <property name="depth" type="integer" required="true"/>
-  </entity>
   <entity name="Config">
     <annotation name="EntityProperties">
       <item name="EntityOriginalName">Config</item>
@@ -5471,26 +5449,58 @@
       <parameter name="agent" type="string"/>
       <parameter name="path" type="string"/>
     </function>
-    <function name="test" return-type="StatEvidence">
+    <function name="filesystem_search_" return-type="FileSystemSearchResult">
       <annotation name="analyze group">
         <item name="analyzed">true</item>
       </annotation>
       <annotation name="ActionScriptGeneration">
         <item name="SerializationFilter">com.adobe.serializers.json.JSONSerializationFilter</item>
         <item name="method">GET</item>
-        <item name="url">/evidence/filesystem</item>
+        <item name="url">/evidence/filesystem_search</item>
       </annotation>
       <annotation name="url group">
-        <item name="completeURL">https://localhost:4444/evidence/filesystem</item>
+        <item name="completeURL">https://localhost:4444/evidence/filesystem_search</item>
       </annotation>
       <annotation name="ValidProperties">
-        <item name="propertySpecifier">photo</item>
+        <item name="propertySpecifier">limit,total,count,page,start,pages,entries</item>
       </annotation>
       <annotation name="original signature">
+        <item name="inputParamNames">target,agent,search,start</item>
+        <item name="inputParams">string,string,string,integer</item>
         <item name="returnType">opaque</item>
       </annotation>
+      <parameter name="target" type="string"/>
+      <parameter name="agent" type="string"/>
+      <parameter name="search" type="string"/>
+      <parameter name="start" type="integer"/>
     </function>
   </service>
+  <entity name="FileSystemItem">
+    <annotation name="EntityProperties">
+      <item name="EntityOriginalName">FileSystemItem</item>
+    </annotation>
+    <annotation name="service Group">
+      <item name="service">DBAgent,DBEvidence</item>
+    </annotation>
+    <annotation name="ServerProperties">
+      <item name="IncludeRemoteClass">nonempty</item>
+    </annotation>
+    <annotation name="filesystems_">
+      <item name="propertySpecifier">_id,path,created_at,sent_at,depth</item>
+    </annotation>
+    <annotation name="ActionScriptGeneration">
+      <item name="Package">it.ht.rcs.console.agent.model</item>
+    </annotation>
+    <property name="_id" type="string" required="true"/>
+    <property name="created_at" type="integer" required="true"/>
+    <property name="sent_at" type="integer" required="true"/>
+    <property name="depth" type="integer" required="true"/>
+    <property name="name" type="string" required="true"/>
+    <property name="path" type="string" required="true"/>
+    <property name="attr" type="integer" required="true"/>
+    <property name="date" type="integer" required="true"/>
+    <property name="size" type="integer" required="true"/>
+  </entity>
   <entity name="Filter">
     <annotation name="EntityProperties">
       <item name="EntityOriginalName">Filter</item>
@@ -5648,6 +5658,30 @@
     <property name="status" type="string" required="true"/>
     <property name="deleted" type="boolean" required="true"/>
   </entity>
+  <entity name="FileSystemSearchResult">
+    <annotation name="EntityProperties">
+      <item name="EntityOriginalName">FileSystemSearchResult</item>
+    </annotation>
+    <annotation name="service Group">
+      <item name="service">DBEvidence</item>
+    </annotation>
+    <annotation name="ServerProperties">
+      <item name="IncludeRemoteClass">nonempty</item>
+    </annotation>
+    <annotation name="filesystem_search_">
+      <item name="propertySpecifier">limit,total,count,page,start,pages,entries</item>
+    </annotation>
+    <annotation name="ActionScriptGeneration">
+      <item name="Package">it.ht.rcs.console.evidence.model</item>
+    </annotation>
+    <property name="limit" type="integer" required="true"/>
+    <property name="total" type="integer" required="true"/>
+    <property name="count" type="integer" required="true"/>
+    <property name="page" type="integer" required="true"/>
+    <property name="start" type="integer" required="true"/>
+    <property name="pages" type="integer" required="true"/>
+    <property name="entries" type="FileSystemItem[]" required="true"/>
+  </entity>
   <entity name="EvidenceDataAddress">
     <annotation name="EntityProperties">
       <item name="EntityOriginalName">EvidenceDataAddress</item>
@@ -5777,7 +5811,7 @@
       <item name="EntityOriginalName">StatEvidence</item>
     </annotation>
     <annotation name="service Group">
-      <item name="service">DBEvidence</item>
+      <item name="service">DBEvidence,DBOperation,DBSearch,DBTarget,DBAgent</item>
     </annotation>
     <annotation name="ServerProperties">
       <item name="IncludeRemoteClass">nonempty</item>

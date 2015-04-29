@@ -22,14 +22,14 @@ internal class _FileSystemItemEntityMetadata extends com.adobe.fiber.valueobject
 {
     private static var emptyArray:Array = new Array();
 
-    model_internal static var allProperties:Array = new Array("_id", "path", "created_at", "sent_at", "depth");
+    model_internal static var allProperties:Array = new Array("_id", "created_at", "sent_at", "depth", "name", "path", "attr", "date", "size");
     model_internal static var allAssociationProperties:Array = new Array();
-    model_internal static var allRequiredProperties:Array = new Array("_id", "path", "created_at", "sent_at", "depth");
-    model_internal static var allAlwaysAvailableProperties:Array = new Array("_id", "path", "created_at", "sent_at", "depth");
+    model_internal static var allRequiredProperties:Array = new Array("_id", "created_at", "sent_at", "depth", "name", "path", "attr", "date", "size");
+    model_internal static var allAlwaysAvailableProperties:Array = new Array("_id", "created_at", "sent_at", "depth", "name", "path", "attr", "date", "size");
     model_internal static var guardedProperties:Array = new Array();
-    model_internal static var dataProperties:Array = new Array("_id", "path", "created_at", "sent_at", "depth");
+    model_internal static var dataProperties:Array = new Array("_id", "created_at", "sent_at", "depth", "name", "path", "attr", "date", "size");
     model_internal static var sourceProperties:Array = emptyArray
-    model_internal static var nonDerivedProperties:Array = new Array("_id", "path", "created_at", "sent_at", "depth");
+    model_internal static var nonDerivedProperties:Array = new Array("_id", "created_at", "sent_at", "depth", "name", "path", "attr", "date", "size");
     model_internal static var derivedProperties:Array = new Array();
     model_internal static var collectionProperties:Array = new Array();
     model_internal static var collectionBaseMap:Object;
@@ -43,6 +43,11 @@ internal class _FileSystemItemEntityMetadata extends com.adobe.fiber.valueobject
     model_internal var __idValidator:com.adobe.fiber.styles.StyleValidator;
     model_internal var __idIsValidCacheInitialized:Boolean = false;
     model_internal var __idValidationFailureMessages:Array;
+    
+    model_internal var _nameIsValid:Boolean;
+    model_internal var _nameValidator:com.adobe.fiber.styles.StyleValidator;
+    model_internal var _nameIsValidCacheInitialized:Boolean = false;
+    model_internal var _nameValidationFailureMessages:Array;
     
     model_internal var _pathIsValid:Boolean;
     model_internal var _pathValidator:com.adobe.fiber.styles.StyleValidator;
@@ -60,10 +65,14 @@ internal class _FileSystemItemEntityMetadata extends com.adobe.fiber.valueobject
             // dependents map
             model_internal::dependentsOnMap = new Object();
             model_internal::dependentsOnMap["_id"] = new Array();
-            model_internal::dependentsOnMap["path"] = new Array();
             model_internal::dependentsOnMap["created_at"] = new Array();
             model_internal::dependentsOnMap["sent_at"] = new Array();
             model_internal::dependentsOnMap["depth"] = new Array();
+            model_internal::dependentsOnMap["name"] = new Array();
+            model_internal::dependentsOnMap["path"] = new Array();
+            model_internal::dependentsOnMap["attr"] = new Array();
+            model_internal::dependentsOnMap["date"] = new Array();
+            model_internal::dependentsOnMap["size"] = new Array();
 
             // collection base map
             model_internal::collectionBaseMap = new Object();
@@ -72,10 +81,14 @@ internal class _FileSystemItemEntityMetadata extends com.adobe.fiber.valueobject
         // Property type Map
         model_internal::propertyTypeMap = new Object();
         model_internal::propertyTypeMap["_id"] = "String";
-        model_internal::propertyTypeMap["path"] = "String";
         model_internal::propertyTypeMap["created_at"] = "int";
         model_internal::propertyTypeMap["sent_at"] = "int";
         model_internal::propertyTypeMap["depth"] = "int";
+        model_internal::propertyTypeMap["name"] = "String";
+        model_internal::propertyTypeMap["path"] = "String";
+        model_internal::propertyTypeMap["attr"] = "int";
+        model_internal::propertyTypeMap["date"] = "int";
+        model_internal::propertyTypeMap["size"] = "int";
 
         model_internal::_instance = value;
         model_internal::__idValidator = new StyleValidator(model_internal::_instance.model_internal::_doValidationFor_id);
@@ -83,6 +96,11 @@ internal class _FileSystemItemEntityMetadata extends com.adobe.fiber.valueobject
         model_internal::__idValidator.requiredFieldError = "_id is required";
         //model_internal::__idValidator.source = model_internal::_instance;
         //model_internal::__idValidator.property = "_id";
+        model_internal::_nameValidator = new StyleValidator(model_internal::_instance.model_internal::_doValidationForName);
+        model_internal::_nameValidator.required = true;
+        model_internal::_nameValidator.requiredFieldError = "name is required";
+        //model_internal::_nameValidator.source = model_internal::_instance;
+        //model_internal::_nameValidator.property = "name";
         model_internal::_pathValidator = new StyleValidator(model_internal::_instance.model_internal::_doValidationForPath);
         model_internal::_pathValidator.required = true;
         model_internal::_pathValidator.requiredFieldError = "path is required";
@@ -321,12 +339,6 @@ internal class _FileSystemItemEntityMetadata extends com.adobe.fiber.valueobject
     }
 
     [Bindable(event="propertyChange")]
-    public function get isPathAvailable():Boolean
-    {
-        return true;
-    }
-
-    [Bindable(event="propertyChange")]
     public function get isCreated_atAvailable():Boolean
     {
         return true;
@@ -344,6 +356,36 @@ internal class _FileSystemItemEntityMetadata extends com.adobe.fiber.valueobject
         return true;
     }
 
+    [Bindable(event="propertyChange")]
+    public function get isNameAvailable():Boolean
+    {
+        return true;
+    }
+
+    [Bindable(event="propertyChange")]
+    public function get isPathAvailable():Boolean
+    {
+        return true;
+    }
+
+    [Bindable(event="propertyChange")]
+    public function get isAttrAvailable():Boolean
+    {
+        return true;
+    }
+
+    [Bindable(event="propertyChange")]
+    public function get isDateAvailable():Boolean
+    {
+        return true;
+    }
+
+    [Bindable(event="propertyChange")]
+    public function get isSizeAvailable():Boolean
+    {
+        return true;
+    }
+
 
     /**
      * derived property recalculation
@@ -354,6 +396,14 @@ internal class _FileSystemItemEntityMetadata extends com.adobe.fiber.valueobject
         {
             model_internal::_instance.model_internal::_doValidationCacheOf_id = null;
             model_internal::calculate_idIsValid();
+        }
+    }
+    public function invalidateDependentOnName():void
+    {
+        if (model_internal::_nameIsValidCacheInitialized )
+        {
+            model_internal::_instance.model_internal::_doValidationCacheOfName = null;
+            model_internal::calculateNameIsValid();
         }
     }
     public function invalidateDependentOnPath():void
@@ -471,6 +521,124 @@ internal class _FileSystemItemEntityMetadata extends com.adobe.fiber.valueobject
     }
 
     [Bindable(event="propertyChange")]   
+    public function get created_atStyle():com.adobe.fiber.styles.Style
+    {
+        return model_internal::_nullStyle;
+    }
+
+    [Bindable(event="propertyChange")]   
+    public function get sent_atStyle():com.adobe.fiber.styles.Style
+    {
+        return model_internal::_nullStyle;
+    }
+
+    [Bindable(event="propertyChange")]   
+    public function get depthStyle():com.adobe.fiber.styles.Style
+    {
+        return model_internal::_nullStyle;
+    }
+
+    [Bindable(event="propertyChange")]   
+    public function get nameStyle():com.adobe.fiber.styles.Style
+    {
+        return model_internal::_nullStyle;
+    }
+
+    public function get nameValidator() : StyleValidator
+    {
+        return model_internal::_nameValidator;
+    }
+
+    model_internal function set _nameIsValid_der(value:Boolean):void 
+    {
+        var oldValue:Boolean = model_internal::_nameIsValid;         
+        if (oldValue !== value)
+        {
+            model_internal::_nameIsValid = value;
+            this.dispatchEvent(mx.events.PropertyChangeEvent.createUpdateEvent(this, "nameIsValid", oldValue, value));
+        }                             
+    }
+
+    [Bindable(event="propertyChange")]
+    public function get nameIsValid():Boolean
+    {
+        if (!model_internal::_nameIsValidCacheInitialized)
+        {
+            model_internal::calculateNameIsValid();
+        }
+
+        return model_internal::_nameIsValid;
+    }
+
+    model_internal function calculateNameIsValid():void
+    {
+        var valRes:ValidationResultEvent = model_internal::_nameValidator.validate(model_internal::_instance.name)
+        model_internal::_nameIsValid_der = (valRes.results == null);
+        model_internal::_nameIsValidCacheInitialized = true;
+        if (valRes.results == null)
+             model_internal::nameValidationFailureMessages_der = emptyArray;
+        else
+        {
+            var _valFailures:Array = new Array();
+            for (var a:int = 0 ; a<valRes.results.length ; a++)
+            {
+                _valFailures.push(valRes.results[a].errorMessage);
+            }
+            model_internal::nameValidationFailureMessages_der = _valFailures;
+        }
+    }
+
+    [Bindable(event="propertyChange")]
+    public function get nameValidationFailureMessages():Array
+    {
+        if (model_internal::_nameValidationFailureMessages == null)
+            model_internal::calculateNameIsValid();
+
+        return _nameValidationFailureMessages;
+    }
+
+    model_internal function set nameValidationFailureMessages_der(value:Array) : void
+    {
+        var oldValue:Array = model_internal::_nameValidationFailureMessages;
+
+        var needUpdate : Boolean = false;
+        if (oldValue == null)
+            needUpdate = true;
+    
+        // avoid firing the event when old and new value are different empty arrays
+        if (!needUpdate && (oldValue !== value && (oldValue.length > 0 || value.length > 0)))
+        {
+            if (oldValue.length == value.length)
+            {
+                for (var a:int=0; a < oldValue.length; a++)
+                {
+                    if (oldValue[a] !== value[a])
+                    {
+                        needUpdate = true;
+                        break;
+                    }
+                }
+            }
+            else
+            {
+                needUpdate = true;
+            }
+        }
+
+        if (needUpdate)
+        {
+            model_internal::_nameValidationFailureMessages = value;   
+            this.dispatchEvent(mx.events.PropertyChangeEvent.createUpdateEvent(this, "nameValidationFailureMessages", oldValue, value));
+            // Only execute calculateIsValid if it has been called before, to update the validationFailureMessages for
+            // the entire entity.
+            if (model_internal::_instance.model_internal::_cacheInitialized_isValid)
+            {
+                model_internal::_instance.model_internal::isValid_der = model_internal::_instance.model_internal::calculateIsValid();
+            }
+        }
+    }
+
+    [Bindable(event="propertyChange")]   
     public function get pathStyle():com.adobe.fiber.styles.Style
     {
         return model_internal::_nullStyle;
@@ -571,19 +739,19 @@ internal class _FileSystemItemEntityMetadata extends com.adobe.fiber.valueobject
     }
 
     [Bindable(event="propertyChange")]   
-    public function get created_atStyle():com.adobe.fiber.styles.Style
+    public function get attrStyle():com.adobe.fiber.styles.Style
     {
         return model_internal::_nullStyle;
     }
 
     [Bindable(event="propertyChange")]   
-    public function get sent_atStyle():com.adobe.fiber.styles.Style
+    public function get dateStyle():com.adobe.fiber.styles.Style
     {
         return model_internal::_nullStyle;
     }
 
     [Bindable(event="propertyChange")]   
-    public function get depthStyle():com.adobe.fiber.styles.Style
+    public function get sizeStyle():com.adobe.fiber.styles.Style
     {
         return model_internal::_nullStyle;
     }
@@ -616,6 +784,10 @@ internal class _FileSystemItemEntityMetadata extends com.adobe.fiber.valueobject
             case("_id"):
             {
                 return _idValidationFailureMessages;
+            }
+            case("name"):
+            {
+                return nameValidationFailureMessages;
             }
             case("path"):
             {

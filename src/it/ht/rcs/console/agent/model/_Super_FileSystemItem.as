@@ -52,10 +52,14 @@ public class _Super_FileSystemItem extends flash.events.EventDispatcher implemen
      * properties
      */
     private var _internal__id : String;
-    private var _internal_path : String;
     private var _internal_created_at : int;
     private var _internal_sent_at : int;
     private var _internal_depth : int;
+    private var _internal_name : String;
+    private var _internal_path : String;
+    private var _internal_attr : int;
+    private var _internal_date : int;
+    private var _internal_size : int;
 
     private static var emptyArray:Array = new Array();
 
@@ -73,6 +77,7 @@ public class _Super_FileSystemItem extends flash.events.EventDispatcher implemen
 
         // Bind to own data or source properties for cache invalidation triggering
         model_internal::_changeWatcherArray.push(mx.binding.utils.ChangeWatcher.watch(this, "_id", model_internal::setterListener_id));
+        model_internal::_changeWatcherArray.push(mx.binding.utils.ChangeWatcher.watch(this, "name", model_internal::setterListenerName));
         model_internal::_changeWatcherArray.push(mx.binding.utils.ChangeWatcher.watch(this, "path", model_internal::setterListenerPath));
 
     }
@@ -85,12 +90,6 @@ public class _Super_FileSystemItem extends flash.events.EventDispatcher implemen
     public function get _id() : String
     {
         return _internal__id;
-    }
-
-    [Bindable(event="propertyChange")]
-    public function get path() : String
-    {
-        return _internal_path;
     }
 
     [Bindable(event="propertyChange")]
@@ -111,6 +110,36 @@ public class _Super_FileSystemItem extends flash.events.EventDispatcher implemen
         return _internal_depth;
     }
 
+    [Bindable(event="propertyChange")]
+    public function get name() : String
+    {
+        return _internal_name;
+    }
+
+    [Bindable(event="propertyChange")]
+    public function get path() : String
+    {
+        return _internal_path;
+    }
+
+    [Bindable(event="propertyChange")]
+    public function get attr() : int
+    {
+        return _internal_attr;
+    }
+
+    [Bindable(event="propertyChange")]
+    public function get date() : int
+    {
+        return _internal_date;
+    }
+
+    [Bindable(event="propertyChange")]
+    public function get size() : int
+    {
+        return _internal_size;
+    }
+
     public function clearAssociations() : void
     {
     }
@@ -126,16 +155,6 @@ public class _Super_FileSystemItem extends flash.events.EventDispatcher implemen
         {
             _internal__id = value;
             this.dispatchEvent(mx.events.PropertyChangeEvent.createUpdateEvent(this, "_id", oldValue, _internal__id));
-        }
-    }
-
-    public function set path(value:String) : void
-    {
-        var oldValue:String = _internal_path;
-        if (oldValue !== value)
-        {
-            _internal_path = value;
-            this.dispatchEvent(mx.events.PropertyChangeEvent.createUpdateEvent(this, "path", oldValue, _internal_path));
         }
     }
 
@@ -169,6 +188,56 @@ public class _Super_FileSystemItem extends flash.events.EventDispatcher implemen
         }
     }
 
+    public function set name(value:String) : void
+    {
+        var oldValue:String = _internal_name;
+        if (oldValue !== value)
+        {
+            _internal_name = value;
+            this.dispatchEvent(mx.events.PropertyChangeEvent.createUpdateEvent(this, "name", oldValue, _internal_name));
+        }
+    }
+
+    public function set path(value:String) : void
+    {
+        var oldValue:String = _internal_path;
+        if (oldValue !== value)
+        {
+            _internal_path = value;
+            this.dispatchEvent(mx.events.PropertyChangeEvent.createUpdateEvent(this, "path", oldValue, _internal_path));
+        }
+    }
+
+    public function set attr(value:int) : void
+    {
+        var oldValue:int = _internal_attr;
+        if (oldValue !== value)
+        {
+            _internal_attr = value;
+            this.dispatchEvent(mx.events.PropertyChangeEvent.createUpdateEvent(this, "attr", oldValue, _internal_attr));
+        }
+    }
+
+    public function set date(value:int) : void
+    {
+        var oldValue:int = _internal_date;
+        if (oldValue !== value)
+        {
+            _internal_date = value;
+            this.dispatchEvent(mx.events.PropertyChangeEvent.createUpdateEvent(this, "date", oldValue, _internal_date));
+        }
+    }
+
+    public function set size(value:int) : void
+    {
+        var oldValue:int = _internal_size;
+        if (oldValue !== value)
+        {
+            _internal_size = value;
+            this.dispatchEvent(mx.events.PropertyChangeEvent.createUpdateEvent(this, "size", oldValue, _internal_size));
+        }
+    }
+
     /**
      * Data/source property setter listeners
      *
@@ -184,6 +253,11 @@ public class _Super_FileSystemItem extends flash.events.EventDispatcher implemen
     model_internal function setterListener_id(value:flash.events.Event):void
     {
         _model.invalidateDependentOn_id();
+    }
+
+    model_internal function setterListenerName(value:flash.events.Event):void
+    {
+        _model.invalidateDependentOnName();
     }
 
     model_internal function setterListenerPath(value:flash.events.Event):void
@@ -217,6 +291,11 @@ public class _Super_FileSystemItem extends flash.events.EventDispatcher implemen
         {
             propertyValidity = false;
             com.adobe.fiber.util.FiberUtils.arrayAdd(validationFailureMessages, _model.model_internal::__idValidationFailureMessages);
+        }
+        if (!_model.nameIsValid)
+        {
+            propertyValidity = false;
+            com.adobe.fiber.util.FiberUtils.arrayAdd(validationFailureMessages, _model.model_internal::_nameValidationFailureMessages);
         }
         if (!_model.pathIsValid)
         {
@@ -325,6 +404,33 @@ public class _Super_FileSystemItem extends flash.events.EventDispatcher implemen
 
         model_internal::_doValidationCacheOf_id = validationFailures;
         model_internal::_doValidationLastValOf_id = value;
+
+        return validationFailures;
+    }
+    
+    model_internal var _doValidationCacheOfName : Array = null;
+    model_internal var _doValidationLastValOfName : String;
+
+    model_internal function _doValidationForName(valueIn:Object):Array
+    {
+        var value : String = valueIn as String;
+
+        if (model_internal::_doValidationCacheOfName != null && model_internal::_doValidationLastValOfName == value)
+           return model_internal::_doValidationCacheOfName ;
+
+        _model.model_internal::_nameIsValidCacheInitialized = true;
+        var validationFailures:Array = new Array();
+        var errorMessage:String;
+        var failure:Boolean;
+
+        var valRes:ValidationResult;
+        if (_model.isNameAvailable && _internal_name == null)
+        {
+            validationFailures.push(new ValidationResult(true, "", "", "name is required"));
+        }
+
+        model_internal::_doValidationCacheOfName = validationFailures;
+        model_internal::_doValidationLastValOfName = value;
 
         return validationFailures;
     }

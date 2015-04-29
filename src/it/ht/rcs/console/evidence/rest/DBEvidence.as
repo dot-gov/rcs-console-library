@@ -107,6 +107,12 @@ package it.ht.rcs.console.evidence.rest
       resp.token = filesystem_(targetId, agentId, path);
     }
     
+    public function filesystem_search(targetId:String, agentId:String, search:String, start:int=0, onResult:Function = null, onFault:Function = null):void
+    {
+      var resp:CallResponder = DB.getCallResponder(onResult, onFault);
+      resp.token = filesystem_search_(targetId, agentId, search, start);
+    }
+    
     public function show(id:String, target:String, onResult:Function=null, onFault:Function=null):void
     {
       var resp:CallResponder = DB.getCallResponder(onResult, onFault);
