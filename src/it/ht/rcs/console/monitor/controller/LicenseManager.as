@@ -35,6 +35,7 @@ package it.ht.rcs.console.monitor.controller
     public var agent_windows:Boolean = false;
     public var agent_android:Boolean = false;
     public var agent_blackberry:Boolean = false;
+    public var agent_bb10:Boolean = false;
     public var agent_ios:Boolean = false;
     public var agent_symbian:Boolean = false;
     public var agent_winphone:Boolean = false;
@@ -44,6 +45,7 @@ package it.ht.rcs.console.monitor.controller
     public var agent_windows_demo:Boolean = false;
     public var agent_android_demo:Boolean = false;
     public var agent_blackberry_demo:Boolean = false;
+    public var agent_bb10_demo:Boolean = false;
     public var agent_ios_demo:Boolean = false;
     public var agent_symbian_demo:Boolean = false;
     public var agent_winphone_demo:Boolean = false;
@@ -112,6 +114,7 @@ package it.ht.rcs.console.monitor.controller
       agent_windows = limits['agents']['windows'][0];
       agent_android = limits['agents']['android'][0];
       agent_blackberry = limits['agents']['blackberry'][0];
+      agent_bb10 = limits['agents']['bb10'][0];
       agent_ios = limits['agents']['ios'][0];
       agent_symbian = limits['agents']['symbian'][0];
       agent_winphone = limits['agents']['winphone'][0]
@@ -121,6 +124,7 @@ package it.ht.rcs.console.monitor.controller
       agent_windows_demo = limits['agents']['windows'][1];
       agent_android_demo = limits['agents']['android'][1];
       agent_blackberry_demo = limits['agents']['blackberry'][1];
+      agent_bb10_demo = limits['agents']['bb10'][1];
       agent_ios_demo = limits['agents']['ios'][1];
       agent_symbian_demo = limits['agents']['symbian'][1];
       agent_winphone_demo = limits['agents']['winphone'][1];

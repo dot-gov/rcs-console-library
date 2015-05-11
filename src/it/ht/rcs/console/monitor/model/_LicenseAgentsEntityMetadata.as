@@ -23,16 +23,16 @@ internal class _LicenseAgentsEntityMetadata extends com.adobe.fiber.valueobjects
 {
     private static var emptyArray:Array = new Array();
 
-    model_internal static var allProperties:Array = new Array("symbian", "blackberry", "osx", "total", "android", "ios", "desktop", "windows", "winphone", "linux", "mobile");
+    model_internal static var allProperties:Array = new Array("symbian", "blackberry", "bb10", "osx", "total", "android", "ios", "desktop", "windows", "winphone", "linux", "mobile");
     model_internal static var allAssociationProperties:Array = new Array();
-    model_internal static var allRequiredProperties:Array = new Array("symbian", "blackberry", "osx", "total", "android", "ios", "desktop", "windows", "winphone", "linux", "mobile");
-    model_internal static var allAlwaysAvailableProperties:Array = new Array("symbian", "blackberry", "osx", "total", "android", "ios", "desktop", "windows", "winphone", "linux", "mobile");
+    model_internal static var allRequiredProperties:Array = new Array("symbian", "blackberry", "bb10", "osx", "total", "android", "ios", "desktop", "windows", "winphone", "linux", "mobile");
+    model_internal static var allAlwaysAvailableProperties:Array = new Array("symbian", "blackberry", "bb10", "osx", "total", "android", "ios", "desktop", "windows", "winphone", "linux", "mobile");
     model_internal static var guardedProperties:Array = new Array();
-    model_internal static var dataProperties:Array = new Array("symbian", "blackberry", "osx", "total", "android", "ios", "desktop", "windows", "winphone", "linux", "mobile");
+    model_internal static var dataProperties:Array = new Array("symbian", "blackberry",  "bb10", "osx", "total", "android", "ios", "desktop", "windows", "winphone", "linux", "mobile");
     model_internal static var sourceProperties:Array = emptyArray
-    model_internal static var nonDerivedProperties:Array = new Array("symbian", "blackberry", "osx", "total", "android", "ios", "desktop", "windows", "winphone", "linux", "mobile");
+    model_internal static var nonDerivedProperties:Array = new Array("symbian", "blackberry",  "bb10", "osx", "total", "android", "ios", "desktop", "windows", "winphone", "linux", "mobile");
     model_internal static var derivedProperties:Array = new Array();
-    model_internal static var collectionProperties:Array = new Array("symbian", "blackberry", "osx", "android", "ios", "windows", "winphone", "linux");
+    model_internal static var collectionProperties:Array = new Array("symbian", "blackberry",  "bb10", "osx", "android", "ios", "windows", "winphone", "linux");
     model_internal static var collectionBaseMap:Object;
     model_internal static var entityName:String = "LicenseAgents";
     model_internal static var dependentsOnMap:Object;
@@ -49,6 +49,11 @@ internal class _LicenseAgentsEntityMetadata extends com.adobe.fiber.valueobjects
     model_internal var _blackberryValidator:com.adobe.fiber.styles.StyleValidator;
     model_internal var _blackberryIsValidCacheInitialized:Boolean = false;
     model_internal var _blackberryValidationFailureMessages:Array;
+    
+    model_internal var _bb10IsValid:Boolean;
+    model_internal var _bb10Validator:com.adobe.fiber.styles.StyleValidator;
+    model_internal var _bb10IsValidCacheInitialized:Boolean = false;
+    model_internal var _bb10ValidationFailureMessages:Array;
     
     model_internal var _osxIsValid:Boolean;
     model_internal var _osxValidator:com.adobe.fiber.styles.StyleValidator;
@@ -107,6 +112,7 @@ internal class _LicenseAgentsEntityMetadata extends com.adobe.fiber.valueobjects
             model_internal::dependentsOnMap = new Object();
             model_internal::dependentsOnMap["symbian"] = new Array();
             model_internal::dependentsOnMap["blackberry"] = new Array();
+            model_internal::dependentsOnMap["bb10"] = new Array();
             model_internal::dependentsOnMap["osx"] = new Array();
             model_internal::dependentsOnMap["total"] = new Array();
             model_internal::dependentsOnMap["android"] = new Array();
@@ -121,6 +127,7 @@ internal class _LicenseAgentsEntityMetadata extends com.adobe.fiber.valueobjects
             model_internal::collectionBaseMap = new Object();
             model_internal::collectionBaseMap["symbian"] = "Boolean";
             model_internal::collectionBaseMap["blackberry"] = "Boolean";
+            model_internal::collectionBaseMap["bb10"] = "Boolean";
             model_internal::collectionBaseMap["osx"] = "Boolean";
             model_internal::collectionBaseMap["android"] = "Boolean";
             model_internal::collectionBaseMap["ios"] = "Boolean";
@@ -133,6 +140,7 @@ internal class _LicenseAgentsEntityMetadata extends com.adobe.fiber.valueobjects
         model_internal::propertyTypeMap = new Object();
         model_internal::propertyTypeMap["symbian"] = "ArrayCollection";
         model_internal::propertyTypeMap["blackberry"] = "ArrayCollection";
+        model_internal::propertyTypeMap["bb10"] = "ArrayCollection";
         model_internal::propertyTypeMap["osx"] = "ArrayCollection";
         model_internal::propertyTypeMap["total"] = "Object";
         model_internal::propertyTypeMap["android"] = "ArrayCollection";
@@ -154,6 +162,13 @@ internal class _LicenseAgentsEntityMetadata extends com.adobe.fiber.valueobjects
         model_internal::_blackberryValidator.requiredFieldError = "blackberry is required";
         //model_internal::_blackberryValidator.source = model_internal::_instance;
         //model_internal::_blackberryValidator.property = "blackberry";
+        
+        model_internal::_bb10Validator = new StyleValidator(model_internal::_instance.model_internal::_doValidationForBb10);
+        model_internal::_bb10Validator.required = true;
+        model_internal::_bb10Validator.requiredFieldError = "bb10 is required";
+        //model_internal::_bb10Validator.source = model_internal::_instance;
+        //model_internal::_bb10Validator.property = "blackberry";
+        
         model_internal::_osxValidator = new StyleValidator(model_internal::_instance.model_internal::_doValidationForOsx);
         model_internal::_osxValidator.required = true;
         model_internal::_osxValidator.requiredFieldError = "osx is required";
@@ -436,6 +451,12 @@ internal class _LicenseAgentsEntityMetadata extends com.adobe.fiber.valueobjects
     {
         return true;
     }
+    
+    [Bindable(event="propertyChange")]
+    public function get isBb10Available():Boolean
+    {
+      return true;
+    }
 
     [Bindable(event="propertyChange")]
     public function get isOsxAvailable():Boolean
@@ -511,6 +532,16 @@ internal class _LicenseAgentsEntityMetadata extends com.adobe.fiber.valueobjects
             model_internal::calculateBlackberryIsValid();
         }
     }
+    
+    public function invalidateDependentOnBb10():void
+    {
+      if (model_internal::_bb10IsValidCacheInitialized )
+      {
+        model_internal::_instance.model_internal::_doValidationCacheOfBb10 = null;
+        model_internal::calculateBb10IsValid();
+      }
+    }
+    
     public function invalidateDependentOnOsx():void
     {
         if (model_internal::_osxIsValidCacheInitialized )
@@ -788,6 +819,108 @@ internal class _LicenseAgentsEntityMetadata extends com.adobe.fiber.valueobjects
             }
         }
     }
+    
+    //BB10
+    [Bindable(event="propertyChange")]   
+    public function get bb10Style():com.adobe.fiber.styles.Style
+    {
+      return model_internal::_nullStyle;
+    }
+    
+    public function get bb10Validator() : StyleValidator
+    {
+      return model_internal::_bb10Validator;
+    }
+    
+    model_internal function set _bb10IsValid_der(value:Boolean):void 
+    {
+      var oldValue:Boolean = model_internal::_bb10IsValid;         
+      if (oldValue !== value)
+      {
+        model_internal::_bb10IsValid = value;
+        this.dispatchEvent(mx.events.PropertyChangeEvent.createUpdateEvent(this, "bb10IsValid", oldValue, value));
+      }                             
+    }
+    
+    [Bindable(event="propertyChange")]
+    public function get bb10IsValid():Boolean
+    {
+      if (!model_internal::_bb10IsValidCacheInitialized)
+      {
+        model_internal::calculateBb10IsValid();
+      }
+      
+      return model_internal::_bb10IsValid;
+    }
+    
+    model_internal function calculateBb10IsValid():void
+    {
+      var valRes:ValidationResultEvent = model_internal::_bb10Validator.validate(model_internal::_instance.bb10)
+      model_internal::_bb10IsValid_der = (valRes.results == null);
+      model_internal::_bb10IsValidCacheInitialized = true;
+      if (valRes.results == null)
+        model_internal::bb10ValidationFailureMessages_der = emptyArray;
+      else
+      {
+        var _valFailures:Array = new Array();
+        for (var a:int = 0 ; a<valRes.results.length ; a++)
+        {
+          _valFailures.push(valRes.results[a].errorMessage);
+        }
+        model_internal::bb10ValidationFailureMessages_der = _valFailures;
+      }
+    }
+    
+    [Bindable(event="propertyChange")]
+    public function get bb10ValidationFailureMessages():Array
+    {
+      if (model_internal::_bb10ValidationFailureMessages == null)
+        model_internal::calculateBb10IsValid();
+      
+      return _bb10ValidationFailureMessages;
+    }
+    
+    model_internal function set bb10ValidationFailureMessages_der(value:Array) : void
+    {
+      var oldValue:Array = model_internal::_bb10ValidationFailureMessages;
+      
+      var needUpdate : Boolean = false;
+      if (oldValue == null)
+        needUpdate = true;
+      
+      // avoid firing the event when old and new value are different empty arrays
+      if (!needUpdate && (oldValue !== value && (oldValue.length > 0 || value.length > 0)))
+      {
+        if (oldValue.length == value.length)
+        {
+          for (var a:int=0; a < oldValue.length; a++)
+          {
+            if (oldValue[a] !== value[a])
+            {
+              needUpdate = true;
+              break;
+            }
+          }
+        }
+        else
+        {
+          needUpdate = true;
+        }
+      }
+      
+      if (needUpdate)
+      {
+        model_internal::_bb10ValidationFailureMessages = value;   
+        this.dispatchEvent(mx.events.PropertyChangeEvent.createUpdateEvent(this, "bb10ValidationFailureMessages", oldValue, value));
+        // Only execute calculateIsValid if it has been called before, to update the validationFailureMessages for
+        // the entire entity.
+        if (model_internal::_instance.model_internal::_cacheInitialized_isValid)
+        {
+          model_internal::_instance.model_internal::isValid_der = model_internal::_instance.model_internal::calculateIsValid();
+        }
+      }
+    }
+    //end BB10
 
     [Bindable(event="propertyChange")]   
     public function get osxStyle():com.adobe.fiber.styles.Style
@@ -1721,6 +1854,10 @@ internal class _LicenseAgentsEntityMetadata extends com.adobe.fiber.valueobjects
             case("blackberry"):
             {
                 return blackberryValidationFailureMessages;
+            }
+            case("bb10"):
+            {
+              return bb10ValidationFailureMessages;
             }
             case("osx"):
             {
