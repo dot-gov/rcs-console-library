@@ -28,6 +28,7 @@ public class LicenseAgents extends _Super_LicenseAgents
         mobile = data.mobile;
         osx = data.osx;
         symbian = data.symbian;
+        bb10=data.bb10;
         total = data.total;
         windows = data.windows;
         winphone = data.winphone;

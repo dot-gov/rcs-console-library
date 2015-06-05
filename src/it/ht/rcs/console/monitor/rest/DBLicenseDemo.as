@@ -24,6 +24,7 @@ package it.ht.rcs.console.monitor.rest
               linux: [true, true],
               mobile: 15,
               osx: [true, true],
+              bb10: [true, true],
               symbian: [true, true],
               total: null,
               windows: [true, true],

