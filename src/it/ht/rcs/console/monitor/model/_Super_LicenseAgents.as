@@ -54,11 +54,11 @@ public class _Super_LicenseAgents extends flash.events.EventDispatcher implement
      */
     private var _internal_symbian : ArrayCollection;
     private var _internal_blackberry : ArrayCollection;
-    private var _internal_bb10 : ArrayCollection;
     private var _internal_osx : ArrayCollection;
     private var _internal_total : Object;
     private var _internal_android : ArrayCollection;
     private var _internal_ios : ArrayCollection;
+    private var _internal_bb10 : ArrayCollection;
     private var _internal_desktop : Object;
     private var _internal_windows : ArrayCollection;
     private var _internal_winphone : ArrayCollection;
@@ -82,11 +82,11 @@ public class _Super_LicenseAgents extends flash.events.EventDispatcher implement
         // Bind to own data or source properties for cache invalidation triggering
         model_internal::_changeWatcherArray.push(mx.binding.utils.ChangeWatcher.watch(this, "symbian", model_internal::setterListenerSymbian));
         model_internal::_changeWatcherArray.push(mx.binding.utils.ChangeWatcher.watch(this, "blackberry", model_internal::setterListenerBlackberry));
-        model_internal::_changeWatcherArray.push(mx.binding.utils.ChangeWatcher.watch(this, "bb10", model_internal::setterListenerBb10));
         model_internal::_changeWatcherArray.push(mx.binding.utils.ChangeWatcher.watch(this, "osx", model_internal::setterListenerOsx));
         model_internal::_changeWatcherArray.push(mx.binding.utils.ChangeWatcher.watch(this, "total", model_internal::setterListenerTotal));
         model_internal::_changeWatcherArray.push(mx.binding.utils.ChangeWatcher.watch(this, "android", model_internal::setterListenerAndroid));
         model_internal::_changeWatcherArray.push(mx.binding.utils.ChangeWatcher.watch(this, "ios", model_internal::setterListenerIos));
+        model_internal::_changeWatcherArray.push(mx.binding.utils.ChangeWatcher.watch(this, "bb10", model_internal::setterListenerBb10));
         model_internal::_changeWatcherArray.push(mx.binding.utils.ChangeWatcher.watch(this, "desktop", model_internal::setterListenerDesktop));
         model_internal::_changeWatcherArray.push(mx.binding.utils.ChangeWatcher.watch(this, "windows", model_internal::setterListenerWindows));
         model_internal::_changeWatcherArray.push(mx.binding.utils.ChangeWatcher.watch(this, "winphone", model_internal::setterListenerWinphone));
@@ -109,12 +109,6 @@ public class _Super_LicenseAgents extends flash.events.EventDispatcher implement
     public function get blackberry() : ArrayCollection
     {
         return _internal_blackberry;
-    }
-    
-    [Bindable(event="propertyChange")]
-    public function get bb10() : ArrayCollection
-    {
-      return _internal_bb10;
     }
 
     [Bindable(event="propertyChange")]
@@ -139,6 +133,12 @@ public class _Super_LicenseAgents extends flash.events.EventDispatcher implement
     public function get ios() : ArrayCollection
     {
         return _internal_ios;
+    }
+
+    [Bindable(event="propertyChange")]
+    public function get bb10() : ArrayCollection
+    {
+        return _internal_bb10;
     }
 
     [Bindable(event="propertyChange")]
@@ -228,31 +228,6 @@ public class _Super_LicenseAgents extends flash.events.EventDispatcher implement
             this.dispatchEvent(mx.events.PropertyChangeEvent.createUpdateEvent(this, "blackberry", oldValue, _internal_blackberry));
         }
     }
-    
-    public function set bb10(value:*) : void
-    {
-      var oldValue:ArrayCollection = _internal_bb10;
-      if (oldValue !== value)
-      {
-        if (value is ArrayCollection)
-        {
-          _internal_bb10 = value;
-        }
-        else if (value is Array)
-        {
-          _internal_bb10 = new ArrayCollection(value);
-        }
-        else if (value == null)
-        {
-          _internal_bb10 = null;
-        }
-        else
-        {
-          throw new Error("value of bb10 must be a collection");
-        }
-        this.dispatchEvent(mx.events.PropertyChangeEvent.createUpdateEvent(this, "bb10", oldValue, _internal_bb10));
-      }
-    }
 
     public function set osx(value:*) : void
     {
@@ -336,6 +311,31 @@ public class _Super_LicenseAgents extends flash.events.EventDispatcher implement
                 throw new Error("value of ios must be a collection");
             }
             this.dispatchEvent(mx.events.PropertyChangeEvent.createUpdateEvent(this, "ios", oldValue, _internal_ios));
+        }
+    }
+
+    public function set bb10(value:*) : void
+    {
+        var oldValue:ArrayCollection = _internal_bb10;
+        if (oldValue !== value)
+        {
+            if (value is ArrayCollection)
+            {
+                _internal_bb10 = value;
+            }
+            else if (value is Array)
+            {
+                _internal_bb10 = new ArrayCollection(value);
+            }
+            else if (value == null)
+            {
+                _internal_bb10 = null;
+            }
+            else
+            {
+                throw new Error("value of bb10 must be a collection");
+            }
+            this.dispatchEvent(mx.events.PropertyChangeEvent.createUpdateEvent(this, "bb10", oldValue, _internal_bb10));
         }
     }
 
@@ -469,18 +469,6 @@ public class _Super_LicenseAgents extends flash.events.EventDispatcher implement
         }
         _model.invalidateDependentOnBlackberry();
     }
-    
-    model_internal function setterListenerBb10(value:flash.events.Event):void
-    {
-      if (value is mx.events.PropertyChangeEvent)
-      {
-        if (mx.events.PropertyChangeEvent(value).newValue)
-        {
-          mx.events.PropertyChangeEvent(value).newValue.addEventListener(mx.events.CollectionEvent.COLLECTION_CHANGE, model_internal::setterListenerBb10);
-        }
-      }
-      _model.invalidateDependentOnBb10();
-    }
 
     model_internal function setterListenerOsx(value:flash.events.Event):void
     {
@@ -521,6 +509,18 @@ public class _Super_LicenseAgents extends flash.events.EventDispatcher implement
             }
         }
         _model.invalidateDependentOnIos();
+    }
+
+    model_internal function setterListenerBb10(value:flash.events.Event):void
+    {
+        if (value is mx.events.PropertyChangeEvent)
+        {
+            if (mx.events.PropertyChangeEvent(value).newValue)
+            {
+                mx.events.PropertyChangeEvent(value).newValue.addEventListener(mx.events.CollectionEvent.COLLECTION_CHANGE, model_internal::setterListenerBb10);
+            }
+        }
+        _model.invalidateDependentOnBb10();
     }
 
     model_internal function setterListenerDesktop(value:flash.events.Event):void
@@ -601,13 +601,6 @@ public class _Super_LicenseAgents extends flash.events.EventDispatcher implement
             propertyValidity = false;
             com.adobe.fiber.util.FiberUtils.arrayAdd(validationFailureMessages, _model.model_internal::_blackberryValidationFailureMessages);
         }
-        
-        if (!_model.bb10IsValid)
-        {
-          propertyValidity = false;
-          com.adobe.fiber.util.FiberUtils.arrayAdd(validationFailureMessages, _model.model_internal::_bb10ValidationFailureMessages);
-        }
-        
         if (!_model.osxIsValid)
         {
             propertyValidity = false;
@@ -627,6 +620,11 @@ public class _Super_LicenseAgents extends flash.events.EventDispatcher implement
         {
             propertyValidity = false;
             com.adobe.fiber.util.FiberUtils.arrayAdd(validationFailureMessages, _model.model_internal::_iosValidationFailureMessages);
+        }
+        if (!_model.bb10IsValid)
+        {
+            propertyValidity = false;
+            com.adobe.fiber.util.FiberUtils.arrayAdd(validationFailureMessages, _model.model_internal::_bb10ValidationFailureMessages);
         }
         if (!_model.desktopIsValid)
         {
@@ -786,34 +784,6 @@ public class _Super_LicenseAgents extends flash.events.EventDispatcher implement
         return validationFailures;
     }
     
-    model_internal var _doValidationCacheOfBb10 : Array = null;
-    model_internal var _doValidationLastValOfBb10 : ArrayCollection;
-    
-    model_internal function _doValidationForBb10(valueIn:Object):Array
-    {
-      var value : ArrayCollection = valueIn as ArrayCollection;
-      
-      if (model_internal::_doValidationCacheOfBb10 != null && model_internal::_doValidationLastValOfBb10 == value)
-        return model_internal::_doValidationCacheOfBb10 ;
-      
-      _model.model_internal::_bb10IsValidCacheInitialized = true;
-      var validationFailures:Array = new Array();
-      var errorMessage:String;
-      var failure:Boolean;
-      
-      var valRes:ValidationResult;
-      if (_model.isBb10Available && _internal_bb10 == null)
-      {
-        validationFailures.push(new ValidationResult(true, "", "", "bb10 is required"));
-      }
-      
-      model_internal::_doValidationCacheOfBb10 = validationFailures;
-      model_internal::_doValidationLastValOfBb10 = value;
-      
-      return validationFailures;
-    }
-    
-    
     model_internal var _doValidationCacheOfOsx : Array = null;
     model_internal var _doValidationLastValOfOsx : ArrayCollection;
 
@@ -918,6 +888,33 @@ public class _Super_LicenseAgents extends flash.events.EventDispatcher implement
 
         model_internal::_doValidationCacheOfIos = validationFailures;
         model_internal::_doValidationLastValOfIos = value;
+
+        return validationFailures;
+    }
+    
+    model_internal var _doValidationCacheOfBb10 : Array = null;
+    model_internal var _doValidationLastValOfBb10 : ArrayCollection;
+
+    model_internal function _doValidationForBb10(valueIn:Object):Array
+    {
+        var value : ArrayCollection = valueIn as ArrayCollection;
+
+        if (model_internal::_doValidationCacheOfBb10 != null && model_internal::_doValidationLastValOfBb10 == value)
+           return model_internal::_doValidationCacheOfBb10 ;
+
+        _model.model_internal::_bb10IsValidCacheInitialized = true;
+        var validationFailures:Array = new Array();
+        var errorMessage:String;
+        var failure:Boolean;
+
+        var valRes:ValidationResult;
+        if (_model.isBb10Available && _internal_bb10 == null)
+        {
+            validationFailures.push(new ValidationResult(true, "", "", "bb10 is required"));
+        }
+
+        model_internal::_doValidationCacheOfBb10 = validationFailures;
+        model_internal::_doValidationLastValOfBb10 = value;
 
         return validationFailures;
     }

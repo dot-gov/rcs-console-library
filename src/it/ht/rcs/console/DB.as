@@ -28,9 +28,14 @@ package it.ht.rcs.console
   import it.ht.rcs.console.connector.rest.DBConnectorDemo;
   import it.ht.rcs.console.connector.rest.IDBConnector;
   import it.ht.rcs.console.entities.rest.DBEntity;
+  import it.ht.rcs.console.entities.rest.DBEntityDemo;
+  import it.ht.rcs.console.entities.rest.IDBEntity;
   import it.ht.rcs.console.evidence.rest.DBEvidence;
   import it.ht.rcs.console.evidence.rest.DBEvidenceDemo;
   import it.ht.rcs.console.evidence.rest.IDBEvidence;
+  import it.ht.rcs.console.modem.rest.DBModem;
+  import it.ht.rcs.console.modem.rest.DBModemDemo;
+  import it.ht.rcs.console.modem.rest.IDBModem;
   import it.ht.rcs.console.monitor.rest.DBLicense;
   import it.ht.rcs.console.monitor.rest.DBLicenseDemo;
   import it.ht.rcs.console.monitor.rest.DBMonitor;
@@ -52,12 +57,12 @@ package it.ht.rcs.console
   import it.ht.rcs.console.shard.rest.DBShard;
   import it.ht.rcs.console.shard.rest.DBShardDemo;
   import it.ht.rcs.console.shard.rest.IDBShard;
-  import it.ht.rcs.console.target.rest.IDBTarget;
+  import it.ht.rcs.console.sms.rest.DBSms;
+  import it.ht.rcs.console.sms.rest.DBSmsDemo;
+  import it.ht.rcs.console.sms.rest.IDBSms;
   import it.ht.rcs.console.target.rest.DBTarget;
   import it.ht.rcs.console.target.rest.DBTargetDemo;
-  import it.ht.rcs.console.entities.rest.IDBEntity;
-  import it.ht.rcs.console.entities.rest.DBEntity;
-  import it.ht.rcs.console.entities.rest.DBEntityDemo;
+  import it.ht.rcs.console.target.rest.IDBTarget;
   import it.ht.rcs.console.task.rest.DBTask;
   import it.ht.rcs.console.task.rest.DBTaskDemo;
   import it.ht.rcs.console.task.rest.IDBTask;
@@ -94,7 +99,10 @@ package it.ht.rcs.console
     public var evidence:IDBEvidence;
     public var build:IDBBuild;
     public var connector:IDBConnector;
-    public var entity:IDBEntity;;
+    public var entity:IDBEntity;
+    public var modem:IDBModem;;
+    public var sms:IDBSms
+    
     
     /* expose if we are in demo mode */
     [Bindable]
@@ -149,6 +157,8 @@ package it.ht.rcs.console
       build     = new DBBuild(host);
       connector = new DBConnector(host);
       entity    = new DBEntity(host);
+      modem     = new DBModem(host);
+      sms       = new DBSms(host)
     }
     
     private function initDemo():void
@@ -175,6 +185,8 @@ package it.ht.rcs.console
       build     = new DBBuildDemo();
       connector = new DBConnectorDemo();
       entity    = new DBEntityDemo()
+      modem     = new DBModemDemo();
+      sms       = new DBSmsDemo();
     }
     
     private function parseHostPort(fqdn:String):void

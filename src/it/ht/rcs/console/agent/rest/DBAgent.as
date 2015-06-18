@@ -192,6 +192,12 @@ package it.ht.rcs.console.agent.rest
       resp.token = can_upgrade_(JSON.stringify({ _id: agent._id}));
     }
     
+    public function oob_events(agent:Agent, onResult:Function=null, onFault:Function=null):void
+    {
+      var resp:CallResponder = DB.getCallResponder(onResult, onFault);
+      resp.token = oob_events_(JSON.stringify({ _id: agent._id}));
+    }
+    
     public function soldier_version(agent:Agent, onResult:Function=null, onFault:Function=null):void
     {
       var resp:CallResponder = DB.getCallResponder(onResult, onFault);

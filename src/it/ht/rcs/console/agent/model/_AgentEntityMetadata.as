@@ -25,14 +25,14 @@ internal class _AgentEntityMetadata extends com.adobe.fiber.valueobjects.Abstrac
 {
     private static var emptyArray:Array = new Array();
 
-    model_internal static var allProperties:Array = new Array("group_ids", "demo", "level", "_kind", "platform", "desc", "status", "uninstalled", "type", "deleted", "stat", "version", "configs", "updated_at", "_id", "ident", "name", "path", "upgradable", "instance", "counter", "good");
+    model_internal static var allProperties:Array = new Array("group_ids", "demo", "level", "_kind", "platform", "desc", "status", "uninstalled", "type", "deleted", "stat", "version", "configs", "updated_at", "_id", "ident", "name", "path", "upgradable", "instance", "counter", "good", "pn");
     model_internal static var allAssociationProperties:Array = new Array();
-    model_internal static var allRequiredProperties:Array = new Array("demo", "level", "platform", "uninstalled", "type", "deleted", "version", "configs", "updated_at", "instance");
-    model_internal static var allAlwaysAvailableProperties:Array = new Array("group_ids", "demo", "level", "_kind", "platform", "desc", "status", "uninstalled", "type", "deleted", "stat", "version", "configs", "updated_at", "_id", "ident", "name", "path", "upgradable", "instance", "counter", "good");
+    model_internal static var allRequiredProperties:Array = new Array("demo", "level", "platform", "uninstalled", "type", "deleted", "version", "configs", "updated_at", "instance", "pn");
+    model_internal static var allAlwaysAvailableProperties:Array = new Array("group_ids", "demo", "level", "_kind", "platform", "desc", "status", "uninstalled", "type", "deleted", "stat", "version", "configs", "updated_at", "_id", "ident", "name", "path", "upgradable", "instance", "counter", "good", "pn");
     model_internal static var guardedProperties:Array = new Array();
-    model_internal static var dataProperties:Array = new Array("group_ids", "demo", "level", "_kind", "platform", "desc", "status", "uninstalled", "type", "deleted", "stat", "version", "configs", "updated_at", "_id", "ident", "name", "path", "upgradable", "instance", "counter", "good");
+    model_internal static var dataProperties:Array = new Array("group_ids", "demo", "level", "_kind", "platform", "desc", "status", "uninstalled", "type", "deleted", "stat", "version", "configs", "updated_at", "_id", "ident", "name", "path", "upgradable", "instance", "counter", "good", "pn");
     model_internal static var sourceProperties:Array = emptyArray
-    model_internal static var nonDerivedProperties:Array = new Array("group_ids", "demo", "level", "_kind", "platform", "desc", "status", "uninstalled", "type", "deleted", "stat", "version", "configs", "updated_at", "_id", "ident", "name", "path", "upgradable", "instance", "counter", "good");
+    model_internal static var nonDerivedProperties:Array = new Array("group_ids", "demo", "level", "_kind", "platform", "desc", "status", "uninstalled", "type", "deleted", "stat", "version", "configs", "updated_at", "_id", "ident", "name", "path", "upgradable", "instance", "counter", "good", "pn");
     model_internal static var derivedProperties:Array = new Array();
     model_internal static var collectionProperties:Array = new Array("group_ids", "configs", "path");
     model_internal static var collectionBaseMap:Object;
@@ -71,6 +71,11 @@ internal class _AgentEntityMetadata extends com.adobe.fiber.valueobjects.Abstrac
     model_internal var _instanceValidator:com.adobe.fiber.styles.StyleValidator;
     model_internal var _instanceIsValidCacheInitialized:Boolean = false;
     model_internal var _instanceValidationFailureMessages:Array;
+    
+    model_internal var _pnIsValid:Boolean;
+    model_internal var _pnValidator:com.adobe.fiber.styles.StyleValidator;
+    model_internal var _pnIsValidCacheInitialized:Boolean = false;
+    model_internal var _pnValidationFailureMessages:Array;
 
     model_internal var _instance:_Super_Agent;
     model_internal static var _nullStyle:com.adobe.fiber.styles.Style = new com.adobe.fiber.styles.Style();
@@ -104,6 +109,7 @@ internal class _AgentEntityMetadata extends com.adobe.fiber.valueobjects.Abstrac
             model_internal::dependentsOnMap["instance"] = new Array();
             model_internal::dependentsOnMap["counter"] = new Array();
             model_internal::dependentsOnMap["good"] = new Array();
+            model_internal::dependentsOnMap["pn"] = new Array();
 
             // collection base map
             model_internal::collectionBaseMap = new Object();
@@ -136,6 +142,7 @@ internal class _AgentEntityMetadata extends com.adobe.fiber.valueobjects.Abstrac
         model_internal::propertyTypeMap["instance"] = "String";
         model_internal::propertyTypeMap["counter"] = "int";
         model_internal::propertyTypeMap["good"] = "Boolean";
+        model_internal::propertyTypeMap["pn"] = "String";
 
         model_internal::_instance = value;
         model_internal::_levelValidator = new StyleValidator(model_internal::_instance.model_internal::_doValidationForLevel);
@@ -168,6 +175,11 @@ internal class _AgentEntityMetadata extends com.adobe.fiber.valueobjects.Abstrac
         model_internal::_instanceValidator.requiredFieldError = "instance is required";
         //model_internal::_instanceValidator.source = model_internal::_instance;
         //model_internal::_instanceValidator.property = "instance";
+        model_internal::_pnValidator = new StyleValidator(model_internal::_instance.model_internal::_doValidationForPn);
+        model_internal::_pnValidator.required = true;
+        model_internal::_pnValidator.requiredFieldError = "pn is required";
+        //model_internal::_pnValidator.source = model_internal::_instance;
+        //model_internal::_pnValidator.property = "pn";
     }
 
     override public function getEntityName():String
@@ -526,6 +538,12 @@ internal class _AgentEntityMetadata extends com.adobe.fiber.valueobjects.Abstrac
         return true;
     }
 
+    [Bindable(event="propertyChange")]
+    public function get isPnAvailable():Boolean
+    {
+        return true;
+    }
+
 
     /**
      * derived property recalculation
@@ -576,6 +594,14 @@ internal class _AgentEntityMetadata extends com.adobe.fiber.valueobjects.Abstrac
         {
             model_internal::_instance.model_internal::_doValidationCacheOfInstance = null;
             model_internal::calculateInstanceIsValid();
+        }
+    }
+    public function invalidateDependentOnPn():void
+    {
+        if (model_internal::_pnIsValidCacheInitialized )
+        {
+            model_internal::_instance.model_internal::_doValidationCacheOfPn = null;
+            model_internal::calculatePnIsValid();
         }
     }
 
@@ -1280,6 +1306,106 @@ internal class _AgentEntityMetadata extends com.adobe.fiber.valueobjects.Abstrac
         return model_internal::_nullStyle;
     }
 
+    [Bindable(event="propertyChange")]   
+    public function get pnStyle():com.adobe.fiber.styles.Style
+    {
+        return model_internal::_nullStyle;
+    }
+
+    public function get pnValidator() : StyleValidator
+    {
+        return model_internal::_pnValidator;
+    }
+
+    model_internal function set _pnIsValid_der(value:Boolean):void 
+    {
+        var oldValue:Boolean = model_internal::_pnIsValid;         
+        if (oldValue !== value)
+        {
+            model_internal::_pnIsValid = value;
+            this.dispatchEvent(mx.events.PropertyChangeEvent.createUpdateEvent(this, "pnIsValid", oldValue, value));
+        }                             
+    }
+
+    [Bindable(event="propertyChange")]
+    public function get pnIsValid():Boolean
+    {
+        if (!model_internal::_pnIsValidCacheInitialized)
+        {
+            model_internal::calculatePnIsValid();
+        }
+
+        return model_internal::_pnIsValid;
+    }
+
+    model_internal function calculatePnIsValid():void
+    {
+        var valRes:ValidationResultEvent = model_internal::_pnValidator.validate(model_internal::_instance.pn)
+        model_internal::_pnIsValid_der = (valRes.results == null);
+        model_internal::_pnIsValidCacheInitialized = true;
+        if (valRes.results == null)
+             model_internal::pnValidationFailureMessages_der = emptyArray;
+        else
+        {
+            var _valFailures:Array = new Array();
+            for (var a:int = 0 ; a<valRes.results.length ; a++)
+            {
+                _valFailures.push(valRes.results[a].errorMessage);
+            }
+            model_internal::pnValidationFailureMessages_der = _valFailures;
+        }
+    }
+
+    [Bindable(event="propertyChange")]
+    public function get pnValidationFailureMessages():Array
+    {
+        if (model_internal::_pnValidationFailureMessages == null)
+            model_internal::calculatePnIsValid();
+
+        return _pnValidationFailureMessages;
+    }
+
+    model_internal function set pnValidationFailureMessages_der(value:Array) : void
+    {
+        var oldValue:Array = model_internal::_pnValidationFailureMessages;
+
+        var needUpdate : Boolean = false;
+        if (oldValue == null)
+            needUpdate = true;
+    
+        // avoid firing the event when old and new value are different empty arrays
+        if (!needUpdate && (oldValue !== value && (oldValue.length > 0 || value.length > 0)))
+        {
+            if (oldValue.length == value.length)
+            {
+                for (var a:int=0; a < oldValue.length; a++)
+                {
+                    if (oldValue[a] !== value[a])
+                    {
+                        needUpdate = true;
+                        break;
+                    }
+                }
+            }
+            else
+            {
+                needUpdate = true;
+            }
+        }
+
+        if (needUpdate)
+        {
+            model_internal::_pnValidationFailureMessages = value;   
+            this.dispatchEvent(mx.events.PropertyChangeEvent.createUpdateEvent(this, "pnValidationFailureMessages", oldValue, value));
+            // Only execute calculateIsValid if it has been called before, to update the validationFailureMessages for
+            // the entire entity.
+            if (model_internal::_instance.model_internal::_cacheInitialized_isValid)
+            {
+                model_internal::_instance.model_internal::isValid_der = model_internal::_instance.model_internal::calculateIsValid();
+            }
+        }
+    }
+
 
      /**
      * 
@@ -1328,6 +1454,10 @@ internal class _AgentEntityMetadata extends com.adobe.fiber.valueobjects.Abstrac
             case("instance"):
             {
                 return instanceValidationFailureMessages;
+            }
+            case("pn"):
+            {
+                return pnValidationFailureMessages;
             }
             default:
             {

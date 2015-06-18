@@ -59,6 +59,8 @@ package it.ht.rcs.console.agent.rest
     function can_upgrade(agent:Agent, onResult:Function=null, onFault:Function=null):void;
     
     function soldier_version(agent:Agent, onResult:Function=null, onFault:Function=null):void;
+    
+    function oob_events(agent:Agent, onResult:Function=null, onFault:Function=null):void
 
   }
   

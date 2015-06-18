@@ -324,6 +324,11 @@ package it.ht.rcs.console.agent.controller
     {
       DB.instance.agent.soldier_version(agent, resultCallback, faultCallback);
     }
+    
+    public function oob_events(agent:Agent, resultCallback:Function, faultCallback:Function=null):void
+    {
+      DB.instance.agent.oob_events(agent, resultCallback, faultCallback);
+    }
 
 		public function updateConfig(agent:Agent, config:Config, desc:String, callback:Function=null):void
 		{

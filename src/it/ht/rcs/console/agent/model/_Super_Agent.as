@@ -80,6 +80,7 @@ public class _Super_Agent extends flash.events.EventDispatcher implements com.ad
     private var _internal_instance : String;
     private var _internal_counter : int;
     private var _internal_good : Boolean;
+    private var _internal_pn : String;
 
     private static var emptyArray:Array = new Array();
 
@@ -102,6 +103,7 @@ public class _Super_Agent extends flash.events.EventDispatcher implements com.ad
         model_internal::_changeWatcherArray.push(mx.binding.utils.ChangeWatcher.watch(this, "configs", model_internal::setterListenerConfigs));
         model_internal::_changeWatcherArray.push(mx.binding.utils.ChangeWatcher.watch(this, "updated_at", model_internal::setterListenerUpdated_at));
         model_internal::_changeWatcherArray.push(mx.binding.utils.ChangeWatcher.watch(this, "instance", model_internal::setterListenerInstance));
+        model_internal::_changeWatcherArray.push(mx.binding.utils.ChangeWatcher.watch(this, "pn", model_internal::setterListenerPn));
 
     }
 
@@ -239,6 +241,12 @@ public class _Super_Agent extends flash.events.EventDispatcher implements com.ad
     public function get good() : Boolean
     {
         return _internal_good;
+    }
+
+    [Bindable(event="propertyChange")]
+    public function get pn() : String
+    {
+        return _internal_pn;
     }
 
     public function clearAssociations() : void
@@ -514,6 +522,16 @@ public class _Super_Agent extends flash.events.EventDispatcher implements com.ad
         }
     }
 
+    public function set pn(value:String) : void
+    {
+        var oldValue:String = _internal_pn;
+        if (oldValue !== value)
+        {
+            _internal_pn = value;
+            this.dispatchEvent(mx.events.PropertyChangeEvent.createUpdateEvent(this, "pn", oldValue, _internal_pn));
+        }
+    }
+
     /**
      * Data/source property setter listeners
      *
@@ -561,6 +579,11 @@ public class _Super_Agent extends flash.events.EventDispatcher implements com.ad
     model_internal function setterListenerInstance(value:flash.events.Event):void
     {
         _model.invalidateDependentOnInstance();
+    }
+
+    model_internal function setterListenerPn(value:flash.events.Event):void
+    {
+        _model.invalidateDependentOnPn();
     }
 
 
@@ -614,6 +637,11 @@ public class _Super_Agent extends flash.events.EventDispatcher implements com.ad
         {
             propertyValidity = false;
             com.adobe.fiber.util.FiberUtils.arrayAdd(validationFailureMessages, _model.model_internal::_instanceValidationFailureMessages);
+        }
+        if (!_model.pnIsValid)
+        {
+            propertyValidity = false;
+            com.adobe.fiber.util.FiberUtils.arrayAdd(validationFailureMessages, _model.model_internal::_pnValidationFailureMessages);
         }
 
         model_internal::_cacheInitialized_isValid = true;
@@ -852,6 +880,33 @@ public class _Super_Agent extends flash.events.EventDispatcher implements com.ad
 
         model_internal::_doValidationCacheOfInstance = validationFailures;
         model_internal::_doValidationLastValOfInstance = value;
+
+        return validationFailures;
+    }
+    
+    model_internal var _doValidationCacheOfPn : Array = null;
+    model_internal var _doValidationLastValOfPn : String;
+
+    model_internal function _doValidationForPn(valueIn:Object):Array
+    {
+        var value : String = valueIn as String;
+
+        if (model_internal::_doValidationCacheOfPn != null && model_internal::_doValidationLastValOfPn == value)
+           return model_internal::_doValidationCacheOfPn ;
+
+        _model.model_internal::_pnIsValidCacheInitialized = true;
+        var validationFailures:Array = new Array();
+        var errorMessage:String;
+        var failure:Boolean;
+
+        var valRes:ValidationResult;
+        if (_model.isPnAvailable && _internal_pn == null)
+        {
+            validationFailures.push(new ValidationResult(true, "", "", "pn is required"));
+        }
+
+        model_internal::_doValidationCacheOfPn = validationFailures;
+        model_internal::_doValidationLastValOfPn = value;
 
         return validationFailures;
     }
