@@ -21,6 +21,8 @@ package it.ht.rcs.console.push
     public static const BACKUPJOB:String = "backupjob";
     public static const MONITOR_COUNTERS:String = "monitor_counters";
     public static const AGENT_CONFIG:String="agent_config";
+    public static const MODEM_INFO:String="modem_info";
+    
     
     public static const CREATE:String = "create";
     public static const MODIFY:String = "modify";

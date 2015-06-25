@@ -242,6 +242,14 @@ package it.ht.rcs.console.push
           AlertPopUp.show(message['text'], 'Logout');
           backToLogin('error', message.text);
           break
+        
+        case 'modem_info':
+          event = new PushEvent(PushEvent.MODEM_INFO);
+          // display the message
+        trace("modem autodetection complete")
+          break
+        
+        
         default:
           trace('PushManager: UNKNOWN event');
           event = new PushEvent(PushEvent.UNKNOWN);
