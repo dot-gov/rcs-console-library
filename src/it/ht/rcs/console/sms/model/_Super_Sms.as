@@ -10,6 +10,7 @@ import com.adobe.fiber.util.FiberUtils;
 import com.adobe.fiber.valueobjects.IValueObject;
 import flash.events.Event;
 import flash.events.EventDispatcher;
+import it.ht.rcs.console.sms.model.Oob_event;
 import mx.binding.utils.ChangeWatcher;
 import mx.collections.ArrayCollection;
 import mx.events.PropertyChangeEvent;
@@ -32,6 +33,7 @@ public class _Super_Sms extends flash.events.EventDispatcher implements com.adob
 
     model_internal static function initRemoteClassAliasAllRelated() : void
     {
+        it.ht.rcs.console.sms.model.Oob_event.initRemoteClassAliasSingleChild();
     }
 
     model_internal var _dminternal_model : _SmsEntityMetadata;
@@ -63,6 +65,9 @@ public class _Super_Sms extends flash.events.EventDispatcher implements com.adob
     private var _internal_created_at : String;
     private var _internal_sent_at : String;
     private var _internal_rr : Boolean;
+    private var _internal_oob_event : it.ht.rcs.console.sms.model.Oob_event;
+    private var _internal_sender_name : String;
+    private var _internal_rcpt_name : String;
 
     private static var emptyArray:Array = new Array();
 
@@ -89,6 +94,9 @@ public class _Super_Sms extends flash.events.EventDispatcher implements com.adob
         model_internal::_changeWatcherArray.push(mx.binding.utils.ChangeWatcher.watch(this, "direction", model_internal::setterListenerDirection));
         model_internal::_changeWatcherArray.push(mx.binding.utils.ChangeWatcher.watch(this, "created_at", model_internal::setterListenerCreated_at));
         model_internal::_changeWatcherArray.push(mx.binding.utils.ChangeWatcher.watch(this, "sent_at", model_internal::setterListenerSent_at));
+        model_internal::_changeWatcherArray.push(mx.binding.utils.ChangeWatcher.watch(this, "oob_event", model_internal::setterListenerOob_event));
+        model_internal::_changeWatcherArray.push(mx.binding.utils.ChangeWatcher.watch(this, "sender_name", model_internal::setterListenerSender_name));
+        model_internal::_changeWatcherArray.push(mx.binding.utils.ChangeWatcher.watch(this, "rcpt_name", model_internal::setterListenerRcpt_name));
 
     }
 
@@ -166,6 +174,24 @@ public class _Super_Sms extends flash.events.EventDispatcher implements com.adob
     public function get rr() : Boolean
     {
         return _internal_rr;
+    }
+
+    [Bindable(event="propertyChange")]
+    public function get oob_event() : it.ht.rcs.console.sms.model.Oob_event
+    {
+        return _internal_oob_event;
+    }
+
+    [Bindable(event="propertyChange")]
+    public function get sender_name() : String
+    {
+        return _internal_sender_name;
+    }
+
+    [Bindable(event="propertyChange")]
+    public function get rcpt_name() : String
+    {
+        return _internal_rcpt_name;
     }
 
     public function clearAssociations() : void
@@ -296,6 +322,36 @@ public class _Super_Sms extends flash.events.EventDispatcher implements com.adob
         }
     }
 
+    public function set oob_event(value:it.ht.rcs.console.sms.model.Oob_event) : void
+    {
+        var oldValue:it.ht.rcs.console.sms.model.Oob_event = _internal_oob_event;
+        if (oldValue !== value)
+        {
+            _internal_oob_event = value;
+            this.dispatchEvent(mx.events.PropertyChangeEvent.createUpdateEvent(this, "oob_event", oldValue, _internal_oob_event));
+        }
+    }
+
+    public function set sender_name(value:String) : void
+    {
+        var oldValue:String = _internal_sender_name;
+        if (oldValue !== value)
+        {
+            _internal_sender_name = value;
+            this.dispatchEvent(mx.events.PropertyChangeEvent.createUpdateEvent(this, "sender_name", oldValue, _internal_sender_name));
+        }
+    }
+
+    public function set rcpt_name(value:String) : void
+    {
+        var oldValue:String = _internal_rcpt_name;
+        if (oldValue !== value)
+        {
+            _internal_rcpt_name = value;
+            this.dispatchEvent(mx.events.PropertyChangeEvent.createUpdateEvent(this, "rcpt_name", oldValue, _internal_rcpt_name));
+        }
+    }
+
     /**
      * Data/source property setter listeners
      *
@@ -356,6 +412,21 @@ public class _Super_Sms extends flash.events.EventDispatcher implements com.adob
     model_internal function setterListenerSent_at(value:flash.events.Event):void
     {
         _model.invalidateDependentOnSent_at();
+    }
+
+    model_internal function setterListenerOob_event(value:flash.events.Event):void
+    {
+        _model.invalidateDependentOnOob_event();
+    }
+
+    model_internal function setterListenerSender_name(value:flash.events.Event):void
+    {
+        _model.invalidateDependentOnSender_name();
+    }
+
+    model_internal function setterListenerRcpt_name(value:flash.events.Event):void
+    {
+        _model.invalidateDependentOnRcpt_name();
     }
 
 
@@ -429,6 +500,21 @@ public class _Super_Sms extends flash.events.EventDispatcher implements com.adob
         {
             propertyValidity = false;
             com.adobe.fiber.util.FiberUtils.arrayAdd(validationFailureMessages, _model.model_internal::_sent_atValidationFailureMessages);
+        }
+        if (!_model.oob_eventIsValid)
+        {
+            propertyValidity = false;
+            com.adobe.fiber.util.FiberUtils.arrayAdd(validationFailureMessages, _model.model_internal::_oob_eventValidationFailureMessages);
+        }
+        if (!_model.sender_nameIsValid)
+        {
+            propertyValidity = false;
+            com.adobe.fiber.util.FiberUtils.arrayAdd(validationFailureMessages, _model.model_internal::_sender_nameValidationFailureMessages);
+        }
+        if (!_model.rcpt_nameIsValid)
+        {
+            propertyValidity = false;
+            com.adobe.fiber.util.FiberUtils.arrayAdd(validationFailureMessages, _model.model_internal::_rcpt_nameValidationFailureMessages);
         }
 
         model_internal::_cacheInitialized_isValid = true;
@@ -775,6 +861,87 @@ public class _Super_Sms extends flash.events.EventDispatcher implements com.adob
 
         model_internal::_doValidationCacheOfSent_at = validationFailures;
         model_internal::_doValidationLastValOfSent_at = value;
+
+        return validationFailures;
+    }
+    
+    model_internal var _doValidationCacheOfOob_event : Array = null;
+    model_internal var _doValidationLastValOfOob_event : it.ht.rcs.console.sms.model.Oob_event;
+
+    model_internal function _doValidationForOob_event(valueIn:Object):Array
+    {
+        var value : it.ht.rcs.console.sms.model.Oob_event = valueIn as it.ht.rcs.console.sms.model.Oob_event;
+
+        if (model_internal::_doValidationCacheOfOob_event != null && model_internal::_doValidationLastValOfOob_event == value)
+           return model_internal::_doValidationCacheOfOob_event ;
+
+        _model.model_internal::_oob_eventIsValidCacheInitialized = true;
+        var validationFailures:Array = new Array();
+        var errorMessage:String;
+        var failure:Boolean;
+
+        var valRes:ValidationResult;
+        if (_model.isOob_eventAvailable && _internal_oob_event == null)
+        {
+            validationFailures.push(new ValidationResult(true, "", "", "oob_event is required"));
+        }
+
+        model_internal::_doValidationCacheOfOob_event = validationFailures;
+        model_internal::_doValidationLastValOfOob_event = value;
+
+        return validationFailures;
+    }
+    
+    model_internal var _doValidationCacheOfSender_name : Array = null;
+    model_internal var _doValidationLastValOfSender_name : String;
+
+    model_internal function _doValidationForSender_name(valueIn:Object):Array
+    {
+        var value : String = valueIn as String;
+
+        if (model_internal::_doValidationCacheOfSender_name != null && model_internal::_doValidationLastValOfSender_name == value)
+           return model_internal::_doValidationCacheOfSender_name ;
+
+        _model.model_internal::_sender_nameIsValidCacheInitialized = true;
+        var validationFailures:Array = new Array();
+        var errorMessage:String;
+        var failure:Boolean;
+
+        var valRes:ValidationResult;
+        if (_model.isSender_nameAvailable && _internal_sender_name == null)
+        {
+            validationFailures.push(new ValidationResult(true, "", "", "sender_name is required"));
+        }
+
+        model_internal::_doValidationCacheOfSender_name = validationFailures;
+        model_internal::_doValidationLastValOfSender_name = value;
+
+        return validationFailures;
+    }
+    
+    model_internal var _doValidationCacheOfRcpt_name : Array = null;
+    model_internal var _doValidationLastValOfRcpt_name : String;
+
+    model_internal function _doValidationForRcpt_name(valueIn:Object):Array
+    {
+        var value : String = valueIn as String;
+
+        if (model_internal::_doValidationCacheOfRcpt_name != null && model_internal::_doValidationLastValOfRcpt_name == value)
+           return model_internal::_doValidationCacheOfRcpt_name ;
+
+        _model.model_internal::_rcpt_nameIsValidCacheInitialized = true;
+        var validationFailures:Array = new Array();
+        var errorMessage:String;
+        var failure:Boolean;
+
+        var valRes:ValidationResult;
+        if (_model.isRcpt_nameAvailable && _internal_rcpt_name == null)
+        {
+            validationFailures.push(new ValidationResult(true, "", "", "rcpt_name is required"));
+        }
+
+        model_internal::_doValidationCacheOfRcpt_name = validationFailures;
+        model_internal::_doValidationLastValOfRcpt_name = value;
 
         return validationFailures;
     }

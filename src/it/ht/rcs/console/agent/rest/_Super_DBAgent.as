@@ -12,6 +12,7 @@ import it.ht.rcs.console.agent.model.Config;
 import it.ht.rcs.console.agent.model.Download;
 import it.ht.rcs.console.agent.model.FileSystemItem;
 import it.ht.rcs.console.agent.model.Upload;
+import it.ht.rcs.console.sms.model.Oob_event;
 import mx.rpc.AbstractOperation;
 import mx.rpc.AsyncToken;
 import mx.rpc.http.HTTPMultiService;
@@ -252,9 +253,9 @@ internal class _Super_DBAgent extends com.adobe.fiber.services.wrapper.HTTPServi
          operation = new mx.rpc.http.Operation(null, "oob_events_");
          operation.url = "/agent/oob_events";
          operation.method = "POST";
-         operation.serializationFilter = serializer0;
+         operation.serializationFilter = serializer1;
          operation.contentType = "application/xml";
-        operation.resultType = Object;
+        operation.resultType = it.ht.rcs.console.sms.model.Oob_event;
          operations.push(operation);
 
          _serviceControl.operationList = operations;  

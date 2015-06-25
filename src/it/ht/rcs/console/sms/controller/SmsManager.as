@@ -13,6 +13,7 @@ package it.ht.rcs.console.sms.controller
   import it.ht.rcs.console.search.controller.SearchManager;
   import it.ht.rcs.console.search.model.Stat;
   import it.ht.rcs.console.search.model.StatEvidence;
+  import it.ht.rcs.console.sms.model.Oob_event;
   import it.ht.rcs.console.sms.model.Sms;
   import it.ht.rcs.console.sms.rest.DBSms;
   import it.ht.rcs.console.target.controller.TargetManager;
@@ -41,13 +42,14 @@ package it.ht.rcs.console.sms.controller
       return _instance;
     }
     
-    public function send(agent:Agent, modem:Modem, command:String, callback:Function):void
+    public function send(agent:Agent, modem:Modem, command:Oob_event, callback:Function):void
     {
       DB.instance.sms.send(agent, modem, command, callback);
     }
     
-    public function all(agent:Agent, callback:Function):void
+    public function all(agent:Agent, callback:Function=null):void
     {
+      
       DB.instance.sms.all(agent, callback);
     }
     

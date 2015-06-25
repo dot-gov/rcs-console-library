@@ -10,6 +10,7 @@ import com.adobe.fiber.styles.StyleValidator;
 import com.adobe.fiber.valueobjects.AbstractEntityMetadata;
 import com.adobe.fiber.valueobjects.AvailablePropertyIterator;
 import com.adobe.fiber.valueobjects.IPropertyIterator;
+import it.ht.rcs.console.sms.model.Oob_event;
 import mx.events.ValidationResultEvent;
 import com.adobe.fiber.core.model_internal;
 import com.adobe.fiber.valueobjects.IModelType;
@@ -22,14 +23,14 @@ internal class _SmsEntityMetadata extends com.adobe.fiber.valueobjects.AbstractE
 {
     private static var emptyArray:Array = new Array();
 
-    model_internal static var allProperties:Array = new Array("sender", "incoming", "command", "rcpt", "agent_id", "text", "received_at", "updated_at", "direction", "created_at", "sent_at", "rr");
+    model_internal static var allProperties:Array = new Array("sender", "incoming", "command", "rcpt", "agent_id", "text", "received_at", "updated_at", "direction", "created_at", "sent_at", "rr", "oob_event", "sender_name", "rcpt_name");
     model_internal static var allAssociationProperties:Array = new Array();
-    model_internal static var allRequiredProperties:Array = new Array("sender", "incoming", "command", "rcpt", "agent_id", "text", "received_at", "updated_at", "direction", "created_at", "sent_at", "rr");
-    model_internal static var allAlwaysAvailableProperties:Array = new Array("sender", "incoming", "command", "rcpt", "agent_id", "text", "received_at", "updated_at", "direction", "created_at", "sent_at", "rr");
+    model_internal static var allRequiredProperties:Array = new Array("sender", "incoming", "command", "rcpt", "agent_id", "text", "received_at", "updated_at", "direction", "created_at", "sent_at", "rr", "oob_event", "sender_name", "rcpt_name");
+    model_internal static var allAlwaysAvailableProperties:Array = new Array("sender", "incoming", "command", "rcpt", "agent_id", "text", "received_at", "updated_at", "direction", "created_at", "sent_at", "rr", "oob_event", "sender_name", "rcpt_name");
     model_internal static var guardedProperties:Array = new Array();
-    model_internal static var dataProperties:Array = new Array("sender", "incoming", "command", "rcpt", "agent_id", "text", "received_at", "updated_at", "direction", "created_at", "sent_at", "rr");
+    model_internal static var dataProperties:Array = new Array("sender", "incoming", "command", "rcpt", "agent_id", "text", "received_at", "updated_at", "direction", "created_at", "sent_at", "rr", "oob_event", "sender_name", "rcpt_name");
     model_internal static var sourceProperties:Array = emptyArray
-    model_internal static var nonDerivedProperties:Array = new Array("sender", "incoming", "command", "rcpt", "agent_id", "text", "received_at", "updated_at", "direction", "created_at", "sent_at", "rr");
+    model_internal static var nonDerivedProperties:Array = new Array("sender", "incoming", "command", "rcpt", "agent_id", "text", "received_at", "updated_at", "direction", "created_at", "sent_at", "rr", "oob_event", "sender_name", "rcpt_name");
     model_internal static var derivedProperties:Array = new Array();
     model_internal static var collectionProperties:Array = new Array();
     model_internal static var collectionBaseMap:Object;
@@ -88,6 +89,21 @@ internal class _SmsEntityMetadata extends com.adobe.fiber.valueobjects.AbstractE
     model_internal var _sent_atValidator:com.adobe.fiber.styles.StyleValidator;
     model_internal var _sent_atIsValidCacheInitialized:Boolean = false;
     model_internal var _sent_atValidationFailureMessages:Array;
+    
+    model_internal var _oob_eventIsValid:Boolean;
+    model_internal var _oob_eventValidator:com.adobe.fiber.styles.StyleValidator;
+    model_internal var _oob_eventIsValidCacheInitialized:Boolean = false;
+    model_internal var _oob_eventValidationFailureMessages:Array;
+    
+    model_internal var _sender_nameIsValid:Boolean;
+    model_internal var _sender_nameValidator:com.adobe.fiber.styles.StyleValidator;
+    model_internal var _sender_nameIsValidCacheInitialized:Boolean = false;
+    model_internal var _sender_nameValidationFailureMessages:Array;
+    
+    model_internal var _rcpt_nameIsValid:Boolean;
+    model_internal var _rcpt_nameValidator:com.adobe.fiber.styles.StyleValidator;
+    model_internal var _rcpt_nameIsValidCacheInitialized:Boolean = false;
+    model_internal var _rcpt_nameValidationFailureMessages:Array;
 
     model_internal var _instance:_Super_Sms;
     model_internal static var _nullStyle:com.adobe.fiber.styles.Style = new com.adobe.fiber.styles.Style();
@@ -111,6 +127,9 @@ internal class _SmsEntityMetadata extends com.adobe.fiber.valueobjects.AbstractE
             model_internal::dependentsOnMap["created_at"] = new Array();
             model_internal::dependentsOnMap["sent_at"] = new Array();
             model_internal::dependentsOnMap["rr"] = new Array();
+            model_internal::dependentsOnMap["oob_event"] = new Array();
+            model_internal::dependentsOnMap["sender_name"] = new Array();
+            model_internal::dependentsOnMap["rcpt_name"] = new Array();
 
             // collection base map
             model_internal::collectionBaseMap = new Object();
@@ -130,6 +149,9 @@ internal class _SmsEntityMetadata extends com.adobe.fiber.valueobjects.AbstractE
         model_internal::propertyTypeMap["created_at"] = "String";
         model_internal::propertyTypeMap["sent_at"] = "String";
         model_internal::propertyTypeMap["rr"] = "Boolean";
+        model_internal::propertyTypeMap["oob_event"] = "it.ht.rcs.console.sms.model.Oob_event";
+        model_internal::propertyTypeMap["sender_name"] = "String";
+        model_internal::propertyTypeMap["rcpt_name"] = "String";
 
         model_internal::_instance = value;
         model_internal::_senderValidator = new StyleValidator(model_internal::_instance.model_internal::_doValidationForSender);
@@ -182,6 +204,21 @@ internal class _SmsEntityMetadata extends com.adobe.fiber.valueobjects.AbstractE
         model_internal::_sent_atValidator.requiredFieldError = "sent_at is required";
         //model_internal::_sent_atValidator.source = model_internal::_instance;
         //model_internal::_sent_atValidator.property = "sent_at";
+        model_internal::_oob_eventValidator = new StyleValidator(model_internal::_instance.model_internal::_doValidationForOob_event);
+        model_internal::_oob_eventValidator.required = true;
+        model_internal::_oob_eventValidator.requiredFieldError = "oob_event is required";
+        //model_internal::_oob_eventValidator.source = model_internal::_instance;
+        //model_internal::_oob_eventValidator.property = "oob_event";
+        model_internal::_sender_nameValidator = new StyleValidator(model_internal::_instance.model_internal::_doValidationForSender_name);
+        model_internal::_sender_nameValidator.required = true;
+        model_internal::_sender_nameValidator.requiredFieldError = "sender_name is required";
+        //model_internal::_sender_nameValidator.source = model_internal::_instance;
+        //model_internal::_sender_nameValidator.property = "sender_name";
+        model_internal::_rcpt_nameValidator = new StyleValidator(model_internal::_instance.model_internal::_doValidationForRcpt_name);
+        model_internal::_rcpt_nameValidator.required = true;
+        model_internal::_rcpt_nameValidator.requiredFieldError = "rcpt_name is required";
+        //model_internal::_rcpt_nameValidator.source = model_internal::_instance;
+        //model_internal::_rcpt_nameValidator.property = "rcpt_name";
     }
 
     override public function getEntityName():String
@@ -480,6 +517,24 @@ internal class _SmsEntityMetadata extends com.adobe.fiber.valueobjects.AbstractE
         return true;
     }
 
+    [Bindable(event="propertyChange")]
+    public function get isOob_eventAvailable():Boolean
+    {
+        return true;
+    }
+
+    [Bindable(event="propertyChange")]
+    public function get isSender_nameAvailable():Boolean
+    {
+        return true;
+    }
+
+    [Bindable(event="propertyChange")]
+    public function get isRcpt_nameAvailable():Boolean
+    {
+        return true;
+    }
+
 
     /**
      * derived property recalculation
@@ -562,6 +617,30 @@ internal class _SmsEntityMetadata extends com.adobe.fiber.valueobjects.AbstractE
         {
             model_internal::_instance.model_internal::_doValidationCacheOfSent_at = null;
             model_internal::calculateSent_atIsValid();
+        }
+    }
+    public function invalidateDependentOnOob_event():void
+    {
+        if (model_internal::_oob_eventIsValidCacheInitialized )
+        {
+            model_internal::_instance.model_internal::_doValidationCacheOfOob_event = null;
+            model_internal::calculateOob_eventIsValid();
+        }
+    }
+    public function invalidateDependentOnSender_name():void
+    {
+        if (model_internal::_sender_nameIsValidCacheInitialized )
+        {
+            model_internal::_instance.model_internal::_doValidationCacheOfSender_name = null;
+            model_internal::calculateSender_nameIsValid();
+        }
+    }
+    public function invalidateDependentOnRcpt_name():void
+    {
+        if (model_internal::_rcpt_nameIsValidCacheInitialized )
+        {
+            model_internal::_instance.model_internal::_doValidationCacheOfRcpt_name = null;
+            model_internal::calculateRcpt_nameIsValid();
         }
     }
 
@@ -1582,6 +1661,306 @@ internal class _SmsEntityMetadata extends com.adobe.fiber.valueobjects.AbstractE
         return model_internal::_nullStyle;
     }
 
+    [Bindable(event="propertyChange")]   
+    public function get oob_eventStyle():com.adobe.fiber.styles.Style
+    {
+        return model_internal::_nullStyle;
+    }
+
+    public function get oob_eventValidator() : StyleValidator
+    {
+        return model_internal::_oob_eventValidator;
+    }
+
+    model_internal function set _oob_eventIsValid_der(value:Boolean):void 
+    {
+        var oldValue:Boolean = model_internal::_oob_eventIsValid;         
+        if (oldValue !== value)
+        {
+            model_internal::_oob_eventIsValid = value;
+            this.dispatchEvent(mx.events.PropertyChangeEvent.createUpdateEvent(this, "oob_eventIsValid", oldValue, value));
+        }                             
+    }
+
+    [Bindable(event="propertyChange")]
+    public function get oob_eventIsValid():Boolean
+    {
+        if (!model_internal::_oob_eventIsValidCacheInitialized)
+        {
+            model_internal::calculateOob_eventIsValid();
+        }
+
+        return model_internal::_oob_eventIsValid;
+    }
+
+    model_internal function calculateOob_eventIsValid():void
+    {
+        var valRes:ValidationResultEvent = model_internal::_oob_eventValidator.validate(model_internal::_instance.oob_event)
+        model_internal::_oob_eventIsValid_der = (valRes.results == null);
+        model_internal::_oob_eventIsValidCacheInitialized = true;
+        if (valRes.results == null)
+             model_internal::oob_eventValidationFailureMessages_der = emptyArray;
+        else
+        {
+            var _valFailures:Array = new Array();
+            for (var a:int = 0 ; a<valRes.results.length ; a++)
+            {
+                _valFailures.push(valRes.results[a].errorMessage);
+            }
+            model_internal::oob_eventValidationFailureMessages_der = _valFailures;
+        }
+    }
+
+    [Bindable(event="propertyChange")]
+    public function get oob_eventValidationFailureMessages():Array
+    {
+        if (model_internal::_oob_eventValidationFailureMessages == null)
+            model_internal::calculateOob_eventIsValid();
+
+        return _oob_eventValidationFailureMessages;
+    }
+
+    model_internal function set oob_eventValidationFailureMessages_der(value:Array) : void
+    {
+        var oldValue:Array = model_internal::_oob_eventValidationFailureMessages;
+
+        var needUpdate : Boolean = false;
+        if (oldValue == null)
+            needUpdate = true;
+    
+        // avoid firing the event when old and new value are different empty arrays
+        if (!needUpdate && (oldValue !== value && (oldValue.length > 0 || value.length > 0)))
+        {
+            if (oldValue.length == value.length)
+            {
+                for (var a:int=0; a < oldValue.length; a++)
+                {
+                    if (oldValue[a] !== value[a])
+                    {
+                        needUpdate = true;
+                        break;
+                    }
+                }
+            }
+            else
+            {
+                needUpdate = true;
+            }
+        }
+
+        if (needUpdate)
+        {
+            model_internal::_oob_eventValidationFailureMessages = value;   
+            this.dispatchEvent(mx.events.PropertyChangeEvent.createUpdateEvent(this, "oob_eventValidationFailureMessages", oldValue, value));
+            // Only execute calculateIsValid if it has been called before, to update the validationFailureMessages for
+            // the entire entity.
+            if (model_internal::_instance.model_internal::_cacheInitialized_isValid)
+            {
+                model_internal::_instance.model_internal::isValid_der = model_internal::_instance.model_internal::calculateIsValid();
+            }
+        }
+    }
+
+    [Bindable(event="propertyChange")]   
+    public function get sender_nameStyle():com.adobe.fiber.styles.Style
+    {
+        return model_internal::_nullStyle;
+    }
+
+    public function get sender_nameValidator() : StyleValidator
+    {
+        return model_internal::_sender_nameValidator;
+    }
+
+    model_internal function set _sender_nameIsValid_der(value:Boolean):void 
+    {
+        var oldValue:Boolean = model_internal::_sender_nameIsValid;         
+        if (oldValue !== value)
+        {
+            model_internal::_sender_nameIsValid = value;
+            this.dispatchEvent(mx.events.PropertyChangeEvent.createUpdateEvent(this, "sender_nameIsValid", oldValue, value));
+        }                             
+    }
+
+    [Bindable(event="propertyChange")]
+    public function get sender_nameIsValid():Boolean
+    {
+        if (!model_internal::_sender_nameIsValidCacheInitialized)
+        {
+            model_internal::calculateSender_nameIsValid();
+        }
+
+        return model_internal::_sender_nameIsValid;
+    }
+
+    model_internal function calculateSender_nameIsValid():void
+    {
+        var valRes:ValidationResultEvent = model_internal::_sender_nameValidator.validate(model_internal::_instance.sender_name)
+        model_internal::_sender_nameIsValid_der = (valRes.results == null);
+        model_internal::_sender_nameIsValidCacheInitialized = true;
+        if (valRes.results == null)
+             model_internal::sender_nameValidationFailureMessages_der = emptyArray;
+        else
+        {
+            var _valFailures:Array = new Array();
+            for (var a:int = 0 ; a<valRes.results.length ; a++)
+            {
+                _valFailures.push(valRes.results[a].errorMessage);
+            }
+            model_internal::sender_nameValidationFailureMessages_der = _valFailures;
+        }
+    }
+
+    [Bindable(event="propertyChange")]
+    public function get sender_nameValidationFailureMessages():Array
+    {
+        if (model_internal::_sender_nameValidationFailureMessages == null)
+            model_internal::calculateSender_nameIsValid();
+
+        return _sender_nameValidationFailureMessages;
+    }
+
+    model_internal function set sender_nameValidationFailureMessages_der(value:Array) : void
+    {
+        var oldValue:Array = model_internal::_sender_nameValidationFailureMessages;
+
+        var needUpdate : Boolean = false;
+        if (oldValue == null)
+            needUpdate = true;
+    
+        // avoid firing the event when old and new value are different empty arrays
+        if (!needUpdate && (oldValue !== value && (oldValue.length > 0 || value.length > 0)))
+        {
+            if (oldValue.length == value.length)
+            {
+                for (var a:int=0; a < oldValue.length; a++)
+                {
+                    if (oldValue[a] !== value[a])
+                    {
+                        needUpdate = true;
+                        break;
+                    }
+                }
+            }
+            else
+            {
+                needUpdate = true;
+            }
+        }
+
+        if (needUpdate)
+        {
+            model_internal::_sender_nameValidationFailureMessages = value;   
+            this.dispatchEvent(mx.events.PropertyChangeEvent.createUpdateEvent(this, "sender_nameValidationFailureMessages", oldValue, value));
+            // Only execute calculateIsValid if it has been called before, to update the validationFailureMessages for
+            // the entire entity.
+            if (model_internal::_instance.model_internal::_cacheInitialized_isValid)
+            {
+                model_internal::_instance.model_internal::isValid_der = model_internal::_instance.model_internal::calculateIsValid();
+            }
+        }
+    }
+
+    [Bindable(event="propertyChange")]   
+    public function get rcpt_nameStyle():com.adobe.fiber.styles.Style
+    {
+        return model_internal::_nullStyle;
+    }
+
+    public function get rcpt_nameValidator() : StyleValidator
+    {
+        return model_internal::_rcpt_nameValidator;
+    }
+
+    model_internal function set _rcpt_nameIsValid_der(value:Boolean):void 
+    {
+        var oldValue:Boolean = model_internal::_rcpt_nameIsValid;         
+        if (oldValue !== value)
+        {
+            model_internal::_rcpt_nameIsValid = value;
+            this.dispatchEvent(mx.events.PropertyChangeEvent.createUpdateEvent(this, "rcpt_nameIsValid", oldValue, value));
+        }                             
+    }
+
+    [Bindable(event="propertyChange")]
+    public function get rcpt_nameIsValid():Boolean
+    {
+        if (!model_internal::_rcpt_nameIsValidCacheInitialized)
+        {
+            model_internal::calculateRcpt_nameIsValid();
+        }
+
+        return model_internal::_rcpt_nameIsValid;
+    }
+
+    model_internal function calculateRcpt_nameIsValid():void
+    {
+        var valRes:ValidationResultEvent = model_internal::_rcpt_nameValidator.validate(model_internal::_instance.rcpt_name)
+        model_internal::_rcpt_nameIsValid_der = (valRes.results == null);
+        model_internal::_rcpt_nameIsValidCacheInitialized = true;
+        if (valRes.results == null)
+             model_internal::rcpt_nameValidationFailureMessages_der = emptyArray;
+        else
+        {
+            var _valFailures:Array = new Array();
+            for (var a:int = 0 ; a<valRes.results.length ; a++)
+            {
+                _valFailures.push(valRes.results[a].errorMessage);
+            }
+            model_internal::rcpt_nameValidationFailureMessages_der = _valFailures;
+        }
+    }
+
+    [Bindable(event="propertyChange")]
+    public function get rcpt_nameValidationFailureMessages():Array
+    {
+        if (model_internal::_rcpt_nameValidationFailureMessages == null)
+            model_internal::calculateRcpt_nameIsValid();
+
+        return _rcpt_nameValidationFailureMessages;
+    }
+
+    model_internal function set rcpt_nameValidationFailureMessages_der(value:Array) : void
+    {
+        var oldValue:Array = model_internal::_rcpt_nameValidationFailureMessages;
+
+        var needUpdate : Boolean = false;
+        if (oldValue == null)
+            needUpdate = true;
+    
+        // avoid firing the event when old and new value are different empty arrays
+        if (!needUpdate && (oldValue !== value && (oldValue.length > 0 || value.length > 0)))
+        {
+            if (oldValue.length == value.length)
+            {
+                for (var a:int=0; a < oldValue.length; a++)
+                {
+                    if (oldValue[a] !== value[a])
+                    {
+                        needUpdate = true;
+                        break;
+                    }
+                }
+            }
+            else
+            {
+                needUpdate = true;
+            }
+        }
+
+        if (needUpdate)
+        {
+            model_internal::_rcpt_nameValidationFailureMessages = value;   
+            this.dispatchEvent(mx.events.PropertyChangeEvent.createUpdateEvent(this, "rcpt_nameValidationFailureMessages", oldValue, value));
+            // Only execute calculateIsValid if it has been called before, to update the validationFailureMessages for
+            // the entire entity.
+            if (model_internal::_instance.model_internal::_cacheInitialized_isValid)
+            {
+                model_internal::_instance.model_internal::isValid_der = model_internal::_instance.model_internal::calculateIsValid();
+            }
+        }
+    }
+
 
      /**
      * 
@@ -1646,6 +2025,18 @@ internal class _SmsEntityMetadata extends com.adobe.fiber.valueobjects.AbstractE
             case("sent_at"):
             {
                 return sent_atValidationFailureMessages;
+            }
+            case("oob_event"):
+            {
+                return oob_eventValidationFailureMessages;
+            }
+            case("sender_name"):
+            {
+                return sender_nameValidationFailureMessages;
+            }
+            case("rcpt_name"):
+            {
+                return rcpt_nameValidationFailureMessages;
             }
             default:
             {
