@@ -27,14 +27,14 @@ internal class _EvidenceDataEntityMetadata extends com.adobe.fiber.valueobjects.
 {
     private static var emptyArray:Array = new Array();
 
-    model_internal static var allProperties:Array = new Array("window", "_grid_size", "program", "process", "service", "user", "pass", "content", "body", "resolution", "_grid", "y", "x", "name", "contact", "info", "action", "desc", "event", "type", "begin", "end", "peer", "duration", "status", "topic", "users", "spool", "access", "from", "caller", "incoming", "speed", "total", "count", "timeout", "draft", "from_display", "rcpt", "id", "rcpt_display", "thumb", "subject", "url", "title", "keywords", "ip", "latitude", "longitude", "accuracy", "address", "cell", "wifi", "path", "attr", "size", "attach", "command", "tr", "version", "encrypted", "balance", "amount", "currency", "tags", "device");
+    model_internal static var allProperties:Array = new Array("window", "_grid_size", "program", "process", "service", "user", "pass", "content", "body", "resolution", "_grid", "y", "x", "name", "contact", "info", "action", "desc", "event", "type", "begin", "end", "peer", "duration", "status", "topic", "users", "spool", "access", "from", "caller", "incoming", "speed", "total", "count", "timeout", "draft", "from_display", "rcpt", "id", "rcpt_display", "thumb", "subject", "url", "title", "keywords", "ip", "latitude", "longitude", "accuracy", "address", "cell", "wifi", "path", "attr", "size", "attach", "command", "tr", "version", "encrypted", "balance", "amount", "currency", "tags", "device", "content_downloadable");
     model_internal static var allAssociationProperties:Array = new Array();
-    model_internal static var allRequiredProperties:Array = new Array("tags", "device");
-    model_internal static var allAlwaysAvailableProperties:Array = new Array("window", "_grid_size", "program", "process", "service", "user", "pass", "content", "body", "resolution", "_grid", "y", "x", "name", "contact", "info", "action", "desc", "event", "type", "begin", "end", "peer", "duration", "status", "topic", "users", "spool", "access", "from", "caller", "incoming", "speed", "total", "count", "timeout", "draft", "from_display", "rcpt", "id", "rcpt_display", "thumb", "subject", "url", "title", "keywords", "ip", "latitude", "longitude", "accuracy", "address", "cell", "wifi", "path", "attr", "size", "attach", "command", "tr", "version", "encrypted", "balance", "amount", "currency", "tags", "device");
+    model_internal static var allRequiredProperties:Array = new Array("tags", "device", "content_downloadable");
+    model_internal static var allAlwaysAvailableProperties:Array = new Array("window", "_grid_size", "program", "process", "service", "user", "pass", "content", "body", "resolution", "_grid", "y", "x", "name", "contact", "info", "action", "desc", "event", "type", "begin", "end", "peer", "duration", "status", "topic", "users", "spool", "access", "from", "caller", "incoming", "speed", "total", "count", "timeout", "draft", "from_display", "rcpt", "id", "rcpt_display", "thumb", "subject", "url", "title", "keywords", "ip", "latitude", "longitude", "accuracy", "address", "cell", "wifi", "path", "attr", "size", "attach", "command", "tr", "version", "encrypted", "balance", "amount", "currency", "tags", "device", "content_downloadable");
     model_internal static var guardedProperties:Array = new Array();
-    model_internal static var dataProperties:Array = new Array("window", "_grid_size", "program", "process", "service", "user", "pass", "content", "body", "resolution", "_grid", "y", "x", "name", "contact", "info", "action", "desc", "event", "type", "begin", "end", "peer", "duration", "status", "topic", "users", "spool", "access", "from", "caller", "incoming", "speed", "total", "count", "timeout", "draft", "from_display", "rcpt", "id", "rcpt_display", "thumb", "subject", "url", "title", "keywords", "ip", "latitude", "longitude", "accuracy", "address", "cell", "wifi", "path", "attr", "size", "attach", "command", "tr", "version", "encrypted", "balance", "amount", "currency", "tags", "device");
+    model_internal static var dataProperties:Array = new Array("window", "_grid_size", "program", "process", "service", "user", "pass", "content", "body", "resolution", "_grid", "y", "x", "name", "contact", "info", "action", "desc", "event", "type", "begin", "end", "peer", "duration", "status", "topic", "users", "spool", "access", "from", "caller", "incoming", "speed", "total", "count", "timeout", "draft", "from_display", "rcpt", "id", "rcpt_display", "thumb", "subject", "url", "title", "keywords", "ip", "latitude", "longitude", "accuracy", "address", "cell", "wifi", "path", "attr", "size", "attach", "command", "tr", "version", "encrypted", "balance", "amount", "currency", "tags", "device", "content_downloadable");
     model_internal static var sourceProperties:Array = emptyArray
-    model_internal static var nonDerivedProperties:Array = new Array("window", "_grid_size", "program", "process", "service", "user", "pass", "content", "body", "resolution", "_grid", "y", "x", "name", "contact", "info", "action", "desc", "event", "type", "begin", "end", "peer", "duration", "status", "topic", "users", "spool", "access", "from", "caller", "incoming", "speed", "total", "count", "timeout", "draft", "from_display", "rcpt", "id", "rcpt_display", "thumb", "subject", "url", "title", "keywords", "ip", "latitude", "longitude", "accuracy", "address", "cell", "wifi", "path", "attr", "size", "attach", "command", "tr", "version", "encrypted", "balance", "amount", "currency", "tags", "device");
+    model_internal static var nonDerivedProperties:Array = new Array("window", "_grid_size", "program", "process", "service", "user", "pass", "content", "body", "resolution", "_grid", "y", "x", "name", "contact", "info", "action", "desc", "event", "type", "begin", "end", "peer", "duration", "status", "topic", "users", "spool", "access", "from", "caller", "incoming", "speed", "total", "count", "timeout", "draft", "from_display", "rcpt", "id", "rcpt_display", "thumb", "subject", "url", "title", "keywords", "ip", "latitude", "longitude", "accuracy", "address", "cell", "wifi", "path", "attr", "size", "attach", "command", "tr", "version", "encrypted", "balance", "amount", "currency", "tags", "device", "content_downloadable");
     model_internal static var derivedProperties:Array = new Array();
     model_internal static var collectionProperties:Array = new Array("wifi", "tags");
     model_internal static var collectionBaseMap:Object;
@@ -130,6 +130,7 @@ internal class _EvidenceDataEntityMetadata extends com.adobe.fiber.valueobjects.
             model_internal::dependentsOnMap["currency"] = new Array();
             model_internal::dependentsOnMap["tags"] = new Array();
             model_internal::dependentsOnMap["device"] = new Array();
+            model_internal::dependentsOnMap["content_downloadable"] = new Array();
 
             // collection base map
             model_internal::collectionBaseMap = new Object();
@@ -205,6 +206,7 @@ internal class _EvidenceDataEntityMetadata extends com.adobe.fiber.valueobjects.
         model_internal::propertyTypeMap["currency"] = "String";
         model_internal::propertyTypeMap["tags"] = "ArrayCollection";
         model_internal::propertyTypeMap["device"] = "String";
+        model_internal::propertyTypeMap["content_downloadable"] = "Boolean";
 
         model_internal::_instance = value;
         model_internal::_tagsValidator = new StyleValidator(model_internal::_instance.model_internal::_doValidationForTags);
@@ -839,6 +841,12 @@ internal class _EvidenceDataEntityMetadata extends com.adobe.fiber.valueobjects.
         return true;
     }
 
+    [Bindable(event="propertyChange")]
+    public function get isContent_downloadableAvailable():Boolean
+    {
+        return true;
+    }
+
 
     /**
      * derived property recalculation
@@ -1447,6 +1455,12 @@ internal class _EvidenceDataEntityMetadata extends com.adobe.fiber.valueobjects.
                 model_internal::_instance.model_internal::isValid_der = model_internal::_instance.model_internal::calculateIsValid();
             }
         }
+    }
+
+    [Bindable(event="propertyChange")]   
+    public function get content_downloadableStyle():com.adobe.fiber.styles.Style
+    {
+        return model_internal::_nullStyle;
     }
 
 

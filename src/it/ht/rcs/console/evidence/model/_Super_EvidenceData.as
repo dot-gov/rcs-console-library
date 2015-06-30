@@ -128,6 +128,7 @@ public class _Super_EvidenceData extends flash.events.EventDispatcher implements
     private var _internal_tags : ArrayCollection;
     model_internal var _internal_tags_leaf:it.ht.rcs.console.evidence.model.Tag;
     private var _internal_device : String;
+    private var _internal_content_downloadable : Boolean;
 
     private static var emptyArray:Array = new Array();
 
@@ -549,6 +550,12 @@ public class _Super_EvidenceData extends flash.events.EventDispatcher implements
     public function get device() : String
     {
         return _internal_device;
+    }
+
+    [Bindable(event="propertyChange")]
+    public function get content_downloadable() : Boolean
+    {
+        return _internal_content_downloadable;
     }
 
     public function clearAssociations() : void
@@ -1246,6 +1253,16 @@ public class _Super_EvidenceData extends flash.events.EventDispatcher implements
         {
             _internal_device = value;
             this.dispatchEvent(mx.events.PropertyChangeEvent.createUpdateEvent(this, "device", oldValue, _internal_device));
+        }
+    }
+
+    public function set content_downloadable(value:Boolean) : void
+    {
+        var oldValue:Boolean = _internal_content_downloadable;
+        if (oldValue !== value)
+        {
+            _internal_content_downloadable = value;
+            this.dispatchEvent(mx.events.PropertyChangeEvent.createUpdateEvent(this, "content_downloadable", oldValue, _internal_content_downloadable));
         }
     }
 
